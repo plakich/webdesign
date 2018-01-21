@@ -1,0 +1,82 @@
+body {
+    background-color: black;
+}
+
+#home-header {
+  z-index: 1; /*this makes header come forward towards us, then it's infront of anything with z-index less than 1*/
+  position: relative; /*have to have this otherwise position is static and it ignores z-index*/
+  text-align: center;
+  padding-top: 40vh; /*this helps center it vertically, textalign is horizontal*/
+}
+
+#home-header h1 {
+  color: #fff;
+}
+
+.slideshow { /*selects unordered list*/
+  position: fixed; 
+  width: 100%; /*set width and height to 100 so it takes up whole page*/
+  height: 100%;
+  top: 0; /*nudges up into top left corner of page by setting top and left to 0*/
+  left: 0;
+  z-index: 0; /*this makes sure background images are behind other content like welcome to yelpcamp text and view camp btn */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover; /*allows images to take up entire space of page*/
+  background-position: 50% 50%; /*centers images perfectly on page*/
+  background-repeat: no-repeat; /*so images don't repeat vert or horz*/
+  opacity: 0;
+  z-index: 0; /*background images behind text and button*/
+  animation: image 50s linear infinite; /*allows fade images in and out; name (image) is arbitrary. 50 seconds total. linear means same speed from beginning to end. loop infinitely*/
+}
+
+.slideshow li:nth-child(1) { 
+  background-image: url(https://images.unsplash.com/photo-1504270997636-07ddfbd48945?auto=format&fit=crop&w=2551&q=80) 
+}
+.slideshow li:nth-child(2) { 
+  background-image: url(https://images.unsplash.com/photo-1499389042463-c4adc501cba0?auto=format&fit=crop&w=1567&q=80);
+  animation-delay: 10s; /*each image fades in 10 seconds after previous image*/
+}
+.slideshow li:nth-child(3) { 
+  background-image: url(https://images.unsplash.com/photo-1476357471311-43c0db9fb2b4?auto=format&fit=crop&w=1650&q=80);
+  animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url(https://images.unsplash.com/photo-1485742032238-7543513eeba6?auto=format&fit=crop&w=1650&q=80);
+  animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url(https://images.unsplash.com/photo-1512000025522-c6c38b5ba04f?auto=format&fit=crop&w=2550&q=80);
+  animation-delay: 40s; 
+}
+
+@keyframes image { /*tells what happens at varoius keyframes in animation*/
+  0% { /*animation goes from 0 to 100 percent but we're only concerned with what happens in 0 to 30. each successive image overlaps some part of this (eg while 1st is ending 2nd is beginning */
+    opacity: 0; 
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-out; 
+  }
+  20% {
+    opacity: 1
+  }
+  30% {
+    opacity: 0
+  }
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+	opacity: 1;
+}
