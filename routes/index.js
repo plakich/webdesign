@@ -11,3 +11,5 @@ router.get("/", function(req, res){
 //==================
 //AUTH Routes
 //==================
+
+module.exports = router; 

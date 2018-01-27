@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var Userpage = express.require("../models/userpage");
+var Userpage = require("../models/userpage");
 
 //======================
 //USERPAGES ROUTES
@@ -31,3 +31,5 @@ router.get("/new", function(req, res) {
 router.get("/:id", function(req, res) {
     res.send("You are here!");
 });
+
+module.exports = router;

@@ -5,10 +5,10 @@ var app = express(),
     mongoose = require("mongoose"); 
     
 //requiring routes
-var userpageRoutes = require("./routes/campgrounds"),
+var userpageRoutes = require("./routes/userpages"),
     indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/over_hyped", {useMongoClient: true});
+mongoose.connect("mongodb://localhost/over_hyped");
 
 
 app.set("view engine", "ejs");
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use("/", indexRoutes); 
-app.use("/userpage", userpageRoutes);  
+app.use("/userpages", userpageRoutes);  
 
 //listener
 app.listen(process.env.PORT,process.env.IP,function(){
