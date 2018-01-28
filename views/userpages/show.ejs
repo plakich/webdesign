@@ -1,0 +1,39 @@
+<% include ../partials/header %>
+
+
+   <div class="row">
+      <div class="col-md-3">
+         <p class="lead">OverHyped</p>
+         <div class="list-group">
+            <li class="list-group-item active">Info 1</li>
+            <li class="list-group-item">Info 2</li>
+            <li class="list-group-item">Info 3</li>
+         </div>
+         <div id="map"></div>
+      </div>
+      <div class="col-md-9">
+         <div class="thumbnail">
+            <img class="image-responsive" src="<%= userpage.image%>">
+            <div class="caption-full">
+              
+               <h4><a><%=userpage.name%></a></h4>
+               <p><%= userpage.description%></p>
+               <p>
+                  <em>Submitted By User</em> <!--need to change User to username once we instantiate user model after adding signup/login-->
+               </p>
+               
+            </div>
+         </div>
+         <div class="well">
+            <div class="text-right">
+                <a class="btn btn-success" href="/userpages/<%= userpage._id %>/comments/new">Add New Comment</a>
+            </div>
+            <hr>
+               <!--add comments here after adding login and register? -->
+
+            
+         </div>
+      </div>
+   </div>
+   
+<% include ../partials/footer %>
