@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+
+
+
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Welcome To Overhyped!</h1>
+            <p>Explore, find, and connect with friends!</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/userpages/new">Create a Profile</a>
+            </p>
+        </div>
+    </header>
+
+    
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        
+        <% userpages.forEach(function(userpage){ %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%=userpage.image%>"> 
+                <div class="caption">
+                <h4><%= userpage.name %></h4> 
+                </div>
+                <p>
+                    <a href="/userpages/<%= userpage._id%>" class="btn btn-primary">View Profile</a>
+                </p>
+            </div>
+            
+        </div>
+      <% }); %>
+        
+    </div>
+       
+
+
+<% include ../partials/footer %>
