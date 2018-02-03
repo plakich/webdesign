@@ -1,3 +1,28 @@
 body {
     padding-top: 70px;
 }
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.brand {
+    width: 200px;
+    border-bottom: solid;
+    border-bottom-color: #428bca;
+    border-bottom-width: 2px; 
+    margin-bottom: 80px; 
+    padding-left: 10px;
+}
+
+.auth {
+    padding-top: 10px; 
+}

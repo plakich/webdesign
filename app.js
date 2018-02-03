@@ -32,6 +32,13 @@ passport.serializeUser(User.serializeUser());     //see https://stackoverflow.co
 passport.deserializeUser(User.deserializeUser()); //3rd post for diagram of serialize and deserialize process
 
 
+app.use(function(req, res, next){
+    //res.locals.currentUser will now equal req.user. this is important because inside templates 
+    //i.e. views, there's no access to route specific variables like req.user
+    res.locals.currentUser = req.user; 
+    next(); 
+});
+
 
 app.use("/", indexRoutes); 
 app.use("/userpages", userpageRoutes);  

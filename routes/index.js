@@ -50,4 +50,10 @@ router.post("/login", passport.authenticate("local",
     //emtpy
 });
 
+router.get("/logout", function(req, res) 
+{
+   req.logout(); 
+   res.redirect("/userpages"); 
+});
+
 module.exports = router; 

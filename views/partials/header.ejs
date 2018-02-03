@@ -25,9 +25,9 @@
                     <li class="<%= typeof page !== 'undefined' && page === 'userpages' ? 'active' : '' %>"><a href="/userpages">Home</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                      <% if(true){ %> <!--if(true) used to be if(!currentUser). need to change back to this later after implement login/reg-->
-                      <li class="<%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
-                      <li class="<%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>"><a href="/register">Sign Up</a></li>
+                      <% if(!currentUser){ %> 
+                      <li><a href="/login">Login</a></li>
+                      <li><a href="/register">Sign Up</a></li>
                     <% } else { %>
                       <li><a href="#">Signed In As <%= currentUser.username %></a></li>
                       <li><a href="/logout">Logout</a></li>
