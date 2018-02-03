@@ -4,7 +4,7 @@ var userpageSchema = new mongoose.Schema({
    name: String,
    image: String,
    description: String
-   /*author: {
+   /*Owner: {
       id: {
          type: mongoose.Schema.Types.ObjectId,
          ref: "User"
