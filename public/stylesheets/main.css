@@ -45,3 +45,11 @@ body {
 .auth {
     padding-top: 10px; 
 }
+
+.warning {
+    border-color: red;
+}
+
+.error {
+    color: red; 
+}

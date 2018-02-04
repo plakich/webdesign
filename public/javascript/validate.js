@@ -1,17 +1,20 @@
         function validate()
         {
-            alert("here");
+            
             var pass = document.getElementById('pass').value;
             var name = document.getElementById('name').value; 
-            alert(pass);
-            var validate = false; 
-            if (!validate)
-            alert("why");
             
-            if ( !pass.match(/^(?=.*\d)[A-Za-z0-9]{8,}$/) )
+            var validate = true; 
+            
+            //use positive lookahead: pass must contain at least one upper case, lowercase, digit, and special character and be
+            //at least 8 chars long consisting of only upper, lower, digits, and special chars. 
+            if ( !pass.match(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[~`!@#\$%\^&\*\(\)\-_\+=\{\}\[\]\|\\;:"<>,.\/\?])[A-Za-z0-9~`!@#\$%\^&\*\(\)\-_\+=\{\}\[\]\|\\;:"<>,.\/\?]{8,}$/) )
             {
-                document.getElementById('pass').style.backgroundColor = "yellow";
-                document.getElementById('pass').textContent = "Warning!";
+                document.getElementById('pass').classList.toggle("warning");
+                document.getElementById('pass1').innerHTML = "<em>! Your password must be at least 8 characters long," +
+                "<br>and contain at least one <strong>special character</strong>, <strong>uppercase letter</strong>,"   +
+                " <strong>lowercase letter</strong>, and <strong>digit</strong>.</em> Example (copy and paste for easy signup/testing): aaaaaA1!";
+                document.getElementById('pass1').classList.toggle("error");
                 validate = false; 
             }
 
@@ -75,6 +78,6 @@
                         "Only upper- and lower-case characters and digits 0-9 are accepted.\n");
                 document.getElementById('email').style.backgroundColor = "yellow";
             }*/
-            return false; 
+            return validate; 
         }
        
