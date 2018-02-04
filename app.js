@@ -16,7 +16,7 @@ mongoose.connect("mongodb://localhost/over_hyped");
 
 
 app.set("view engine", "ejs");
-app.use(express.static("public")); //may have to change to dirname + public and also add one for partials
+app.use(express.static(__dirname + "/public")); //may have to change to dirname + public and also add one for partials
 app.use(bodyParser.urlencoded({extended: true}));
 
 //Configure Passport

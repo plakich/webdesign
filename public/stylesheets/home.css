@@ -53,7 +53,7 @@ h1 {
   background-repeat: no-repeat; /*so images don't repeat vert or horz*/
   opacity: 0;
   z-index: 0; /*background images behind text and button*/
-  animation: image 70s linear infinite; /*allows fade images in and out; name (image) is arbitrary. 50 seconds total. linear means same speed from beginning to end. loop infinitely*/
+  animation: image 70s linear infinite; /*allows fade images in and out; name (image) is arbitrary. 70 seconds total. linear means same speed from beginning to end. loop infinitely*/
 }
 
 .slideshow li:nth-child(1) { 
