@@ -23,6 +23,25 @@ body {
     padding-left: 10px;
 }
 
+.logo {
+    letter-spacing: 3px;
+    font-size: 1.2em;
+    transition: color 0.4s;
+  -webkit-transition: color 0.4s;
+  -moz-transition: color 0.4s;
+}
+
+.logo:hover {
+    text-decoration: none;
+    color: #000;
+    text-shadow: 3px 3px 8px #428bca;
+    transition: text-shadow 0.4s;
+  -webkit-transition: text-shadow 0.4s;
+  -moz-transition: text-shadow 0.4s;
+    
+}
+
+
 .auth {
     padding-top: 10px; 
 }
