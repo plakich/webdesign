@@ -30,35 +30,37 @@
             if ( !pass.value.match(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[~`!@#\$%\^&\*\(\)\-_\+=\{\}\[\]\|\\;:"<>,.\/\?])[A-Za-z0-9~`!@#\$%\^&\*\(\)\-_\+=\{\}\[\]\|\\;:"<>,.\/\?]{8,}$/) )
             {
                 pass.classList.add("warning");
-                passError.innerHTML = "<em>! Your password must be at least 8 characters long," +
-                "<br>and contain at least one <strong>special character</strong>, <strong>uppercase letter</strong>,"   +
-                " <strong>lowercase letter</strong>, and <strong>digit</strong>.</em> Example (copy and paste for easy signup/testing): aaaaa!A1";
+                passError.innerHTML = "<em>! Password must be at least 8 characters," +
+                " and contain at least one <strong>special character</strong>, <strong>uppercase letter</strong>,"   +
+                " <strong>lowercase letter</strong>, and <strong>digit</strong>.</em> e.g., aaaaa!A1";
                 passError.classList.add("error");
                 validate = false; 
-                if ( confirm.value && !(confirm.value === pass.value) ) 
-                {
-                    confirm.classList.add('warning');
-                    confirmError.innerHTML = "<em>! Passwords must match.</em>";
-                    confirmError.classList.add('error');
-                }
-                else if ( !confirm.value && pass.value ) //if user didn't reenter password
-                {
-                    confirm.classList.add('warning');
-                    confirmError.innerHTML = "<em>! Type in your password again.</em>";
-                    confirmError.classList.add('error');
-                }
-                else
-                {
-                    confirm.classList.remove('warning');
-                    confirmError.innerHTML = "";
-                    confirmError.classList.remove('error');
-                }
+                
             }
-            else
+            else //password is okay
             {
                 pass.classList.remove("warning");
                 passError.innerHTML = "";
                 passError.classList.remove("error");
+            }
+            
+            if ( confirm.value && pass.value && !(confirm.value === pass.value) ) 
+            {
+                confirm.classList.add('warning');
+                confirmError.innerHTML = "<em>! Passwords must match.</em>";
+                confirmError.classList.add('error');
+            }
+            else if ( !confirm.value && pass.value ) //if user didn't reenter password at all
+            {
+                confirm.classList.add('warning');
+                confirmError.innerHTML = "<em>! Type in your password again.</em>";
+                confirmError.classList.add('error');
+            }
+            else
+            {
+                confirm.classList.remove('warning');
+                confirmError.innerHTML = "";
+                confirmError.classList.remove('error');
             }
 
             /*if ( !first.match(/^[A-Za-z\u00C0-\u017F]+$/) ) //only allow upper and lower case chars in name

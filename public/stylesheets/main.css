@@ -62,7 +62,10 @@ body {
 
 .loginSign {
     width: 75%;
-    margin: 25px auto;
+    margin-top: 15px;
+    margin-bottom: 25px; 
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .authHead {

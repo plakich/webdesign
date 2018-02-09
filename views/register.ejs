@@ -22,18 +22,18 @@
                             <input class="form-control" type="text" id="name" name="username" placeholder="Username">
                         </div>
                         <div class="form-group">
-                            <p id="nameError"></p>
+                            <p id="nameError" <%= typeof msg !== 'undefined' ? 'class=error' : ''%>><%= typeof msg !== 'undefined' ? msg : ""%></p>
                         </div>
                         <label for="pass">Password</label>
                         <div class="form-group">
-                            <input class="form-control" type="password" id="pass" name="password" placeholder="8 chars min (1 upper, lower, digit, & special)">
+                            <input class="form-control" value="<%= typeof pass !== 'undefined' ? pass : ''%>" type="password" id="pass" name="password" placeholder="8 chars min (1 upper, lower, digit, & special)">
                         </div>
                         <div class="form-group">
                             <p id="passError"></p>
                         </div>
                         <label for="confirm">Retype Password</label>
                         <div class="form-group">
-                            <input class="form-control" type="password" id="confirm" name="password" placeholder="Retype Password">
+                            <input class="form-control"  value="<%= typeof pass !== 'undefined' ? pass : ''%>" type="password" id="confirm" placeholder="Retype Password">
                         </div>
                         <div class="form-group">
                             <p id="confirmError"></p>

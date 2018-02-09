@@ -25,7 +25,8 @@ router.post("/register", function(req, res)
         if(err)
         {
             console.log(err); 
-            return res.redirect("register");
+            var msg = err.message;
+            return res.render("register", {msg: msg, pass: req.body.password}); //pass in obj so fields don't get reset on view reload
         }
         
         passport.authenticate("local")(req, res, function()
