@@ -53,3 +53,19 @@ body {
 .error {
     color: red; 
 }
+
+.loginSignBorder {
+    border: 1px solid rgb(200, 200, 200);
+    width: 40%;
+    border-radius: 10px; 
+}
+
+.loginSign {
+    width: 75%;
+    margin: 25px auto;
+}
+
+.authHead {
+    text-align: center;
+    
+}

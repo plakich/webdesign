@@ -1,21 +1,64 @@
         function validate()
         {
             
-            var pass = document.getElementById('pass').value;
-            var name = document.getElementById('name').value; 
+            var pass = document.getElementById('pass');
+            var name = document.getElementById('name'); 
+            var confirm = document.getElementById('confirm'); 
+            var passError = document.getElementById('passError');
+            var nameError = document.getElementById('nameError');
+            var confirmError = document.getElementById('confirmError');
             
             var validate = true; 
             
+            
+            if ( !name.value ) //if name is undefined, i.e., user left field blank
+            {
+                name.classList.add('warning');
+                nameError.innerHTML = "<em>! Username cannot be left blank.</em>";
+                nameError.classList.add('error');
+                validate = false; 
+            }
+            else
+            {
+                name.classList.remove('warning');
+                nameError.innerHTML = "";
+                nameError.classList.remove('error');
+            }
+            
             //use positive lookahead: pass must contain at least one upper case, lowercase, digit, and special character and be
             //at least 8 chars long consisting of only upper, lower, digits, and special chars. 
-            if ( !pass.match(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[~`!@#\$%\^&\*\(\)\-_\+=\{\}\[\]\|\\;:"<>,.\/\?])[A-Za-z0-9~`!@#\$%\^&\*\(\)\-_\+=\{\}\[\]\|\\;:"<>,.\/\?]{8,}$/) )
+            if ( !pass.value.match(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[~`!@#\$%\^&\*\(\)\-_\+=\{\}\[\]\|\\;:"<>,.\/\?])[A-Za-z0-9~`!@#\$%\^&\*\(\)\-_\+=\{\}\[\]\|\\;:"<>,.\/\?]{8,}$/) )
             {
-                document.getElementById('pass').classList.toggle("warning");
-                document.getElementById('pass1').innerHTML = "<em>! Your password must be at least 8 characters long," +
+                pass.classList.add("warning");
+                passError.innerHTML = "<em>! Your password must be at least 8 characters long," +
                 "<br>and contain at least one <strong>special character</strong>, <strong>uppercase letter</strong>,"   +
-                " <strong>lowercase letter</strong>, and <strong>digit</strong>.</em> Example (copy and paste for easy signup/testing): aaaaaA1!";
-                document.getElementById('pass1').classList.toggle("error");
+                " <strong>lowercase letter</strong>, and <strong>digit</strong>.</em> Example (copy and paste for easy signup/testing): aaaaa!A1";
+                passError.classList.add("error");
                 validate = false; 
+                if ( confirm.value && !(confirm.value === pass.value) ) 
+                {
+                    confirm.classList.add('warning');
+                    confirmError.innerHTML = "<em>! Passwords must match.</em>";
+                    confirmError.classList.add('error');
+                }
+                else if ( !confirm.value && pass.value ) //if user didn't reenter password
+                {
+                    confirm.classList.add('warning');
+                    confirmError.innerHTML = "<em>! Type in your password again.</em>";
+                    confirmError.classList.add('error');
+                }
+                else
+                {
+                    confirm.classList.remove('warning');
+                    confirmError.innerHTML = "";
+                    confirmError.classList.remove('error');
+                }
+            }
+            else
+            {
+                pass.classList.remove("warning");
+                passError.innerHTML = "";
+                passError.classList.remove("error");
             }
 
             /*if ( !first.match(/^[A-Za-z\u00C0-\u017F]+$/) ) //only allow upper and lower case chars in name
