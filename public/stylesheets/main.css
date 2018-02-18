@@ -1,5 +1,5 @@
 body {
-    padding-top: 70px;
+    padding-top: 70px; /* for fixed navbar as per bootstrap docs */
 }
 
 .thumbnail img {
@@ -41,6 +41,9 @@ body {
     
 }
 
+#loginError {
+    text-align: center;
+}
 
 .auth {
     padding-top: 10px; 
@@ -58,6 +61,7 @@ body {
     border: 1px solid rgb(200, 200, 200);
     width: 40%;
     border-radius: 10px; 
+    box-shadow: 2px 2px 21px 2px #428bca
 }
 
 .loginSign {
@@ -67,6 +71,7 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
 
 .authHead {
     text-align: center;

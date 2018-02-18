@@ -14,6 +14,7 @@ router.get("/", function(req, res)
 
 router.get("/register", function(req, res)
 {
+
     res.render("register");
 });
 
@@ -38,13 +39,23 @@ router.post("/register", function(req, res)
 
 router.get("/login", function(req, res)
 {
-   res.render("login"); 
+   var errors; 
+   
+   if ( req.session.messages )
+   {
+        errors = "Invalid username or password";
+   }
+   req.session.messages = undefined;
+   
+   res.render("login", { loginErrors: errors });
+
 });
 
 router.post("/login", passport.authenticate("local", 
 {
     successRedirect: "/userpages",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
+    failureMessage: "Invalid username or password" 
     
 }), function(req, res)
 {

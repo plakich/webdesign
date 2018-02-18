@@ -16,13 +16,13 @@
             <div class="row">
                 <h1 class="authHead">Sign Up</h1>
                 <div class="loginSign">
-                    <form action="/register" method="post" onsubmit="return validate()">
+                    <form action="/register" method="post" onsubmit="return validate('register')">
                         <label for="name">Username</label>
                         <div class="form-group">
-                            <input class="form-control" type="text" id="name" name="username" placeholder="Username">
+                            <input class="form-control <%= typeof msg !== 'undefined' ? 'warning' : ''%>" type="text" id="name" name="username" placeholder="Username">
                         </div>
                         <div class="form-group">
-                            <p id="nameError" <%= typeof msg !== 'undefined' ? 'class=error' : ''%>><%= typeof msg !== 'undefined' ? msg : ""%></p>
+                            <p id="nameError" <%= typeof msg !== 'undefined' ? 'class=error' : ''%>><%= typeof msg !== 'undefined' ? msg + '.' : ""%></p>
                         </div>
                         <label for="pass">Password</label>
                         <div class="form-group">
