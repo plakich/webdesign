@@ -16,22 +16,22 @@
     <div class="row text-center" style="display:flex; flex-wrap: wrap;"> 
         
         <% userpages.forEach(function(userpage){ %>
-        <div class="col-md-5ths col-sm-6">
-            <div class="thumbnail">
-                <img src="<%=userpage.image%>"> 
-                <div class="caption">
-                <h4><%= userpage.name %></h4> 
+        <div class="col-md-5ths col-sm-6 profile">
+            <a href="/userpages/<%= userpage._id%>">
+                <div class="thumbnail user">
+                    <img src="<%=userpage.image%>"> 
+                    <div class="caption">
+                        <h4 id="userName" class=""><%= userpage.name %></h4> 
+                    </div>
+                    <p>
+                        View Profile
+                    </p>
                 </div>
-                <p>
-                    <a href="/userpages/<%= userpage._id%>" class="btn btn-primary">View Profile</a>
-                </p>
-            </div>
-            
+            </a>
         </div>
       <% }); %>
         
     </div>
        
-
 
 <% include ../partials/footer %>
