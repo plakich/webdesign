@@ -1,3 +1,182 @@
 body {
-    padding-top: 70px;
+    padding-top: 70px; /* for fixed navbar as per bootstrap docs */
 }
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.brand {
+    width: 200px;
+    border-bottom: solid;
+    border-bottom-color: #DCDCDC;
+    border-bottom-width: 2px; 
+    margin-bottom: 80px; 
+    padding-left: 10px;
+}
+
+.logo {
+    letter-spacing: 3px;
+    font-size: 1.2em;
+    transition: color 0.4s;
+  -webkit-transition: color 0.4s;
+  -moz-transition: color 0.4s;
+}
+
+.logo:hover {
+    text-decoration: none;
+    color: #000;
+    text-shadow: 3px 3px 8px #428bca;
+    transition: text-shadow 0.4s;
+  -webkit-transition: text-shadow 0.4s;
+  -moz-transition: text-shadow 0.4s;
+    
+}
+
+#loginError {
+    text-align: center;
+}
+
+.auth {
+    padding-top: 10px; 
+}
+
+.warning {
+    border-color: red;
+}
+
+.error {
+    color: red; 
+}
+
+.loginSignBorder {
+    border: 1px solid rgb(200, 200, 200);
+    width: 40%;
+    border-radius: 10px; 
+    box-shadow: 2px 2px 21px 2px #428bca
+}
+
+.loginSign {
+    width: 75%;
+    margin-top: 15px;
+    margin-bottom: 25px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.authHead {
+    text-align: center;
+    
+}
+
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+.profile a:link {
+  text-decoration:  none;
+  font-weight: bold;
+  
+}
+
+.profile a:visited {
+  text-decoration:  none;
+  font-weight:      bold;
+}
+
+.profile {
+    position: relative;
+}
+
+.profile::after {
+    position: absolute;
+    left: 50%;
+	content: '';
+	height: 2px;
+    background: grey;
+    transition: all 0.3s linear;
+    width: 0;
+    bottom: 60px; 
+}
+
+.profile:hover::after{
+    width: 70%;
+    margin-left: -35%;
+}
+
+.user.thumbnail {
+    position: relative;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.user.thumbnail::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    border-radius: 5px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.user.thumbnail:hover {
+    transform: scale(1.05, 1.05);
+}
+
+.user.thumbnail:hover::after {
+    opacity: 1;
+}
+
+#captionName {
+    color: #428bca;
+}
+
+

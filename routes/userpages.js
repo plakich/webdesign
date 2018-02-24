@@ -27,14 +27,11 @@ router.post("/", function(req, res){
    var name = req.body.name;
    var image = req.body.image;
    var description = req.body.description;
-   /*var author = {
-       id: req.user._id,
-       username: req.user.username
-   }*/
+   
    
        var newUserpage = {name: name, image: image, description: description};
    
-       // Create a new campground and save to DB
+       // Create a new Userpage and save to DB
        Userpage.create(newUserpage, function(err, newlyCreated){
            if(err)
            {

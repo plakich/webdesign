@@ -2,25 +2,14 @@
 
 
    <div class="row">
-      <div class="col-md-3">
-         <p class="lead">OverHyped</p>
-         <div class="list-group">
-            <li class="list-group-item active">Info 1</li>
-            <li class="list-group-item">Info 2</li>
-            <li class="list-group-item">Info 3</li>
-         </div>
-         <div id="map"></div>
-      </div>
       <div class="col-md-9">
          <div class="thumbnail">
             <img class="image-responsive" src="<%= userpage.image%>">
             <div class="caption-full">
               
-               <h4><a><%=userpage.name%></a></h4>
+               <h4 id="captionName"><%=userpage.name%></h4>
+               <hr>
                <p><%= userpage.description%></p>
-               <p>
-                  <em>Submitted By User</em> <!--need to change User to username once we instantiate user model after adding signup/login-->
-               </p>
                
             </div>
          </div>
@@ -29,10 +18,16 @@
                 <a class="btn btn-success" href="/userpages/<%= userpage._id %>/comments/new">Add New Comment</a>
             </div>
             <hr>
-               <!--add comments here after adding login and register? -->
-
             
          </div>
+      </div>
+      <div class="col-md-3">
+         <div class="list-group">
+            <li class="list-group-item active">My Photos</li>
+            <li class="list-group-item">My Blog</li>
+            <li class="list-group-item">My Location</li>
+         </div>
+         <div id="map"></div>
       </div>
    </div>
    

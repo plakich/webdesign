@@ -2,6 +2,10 @@ body {
     background-color: black;
 }
 
+h1 {
+  text-shadow: 3px 3px 8px #000;
+}
+
 #home-header {
   z-index: 1; /*this makes header come forward towards us, then it's infront of anything with z-index less than 1*/
   position: relative; /*have to have this otherwise position is static and it ignores z-index*/
@@ -13,13 +17,26 @@ body {
   color: #fff;
 }
 
+.btn-success {
+  background-color: transparent;
+  border-radius: 50px;
+  width: 15vw;
+  font-size: 140%;
+  border-width: 2px;
+  transition: background-color 0.4s;
+  -webkit-transition: background-color 0.4s;
+  -moz-transition: background-color 0.4s;
+}
+
+
+
 .slideshow { /*selects unordered list*/
   position: fixed; 
   width: 100%; /*set width and height to 100 so it takes up whole page*/
   height: 100%;
   top: 0; /*nudges up into top left corner of page by setting top and left to 0*/
   left: 0;
-  z-index: 0; /*this makes sure background images are behind other content like welcome to yelpcamp text and view camp btn */
+  z-index: 0; /*this makes sure background images are behind other content like welcome to overhype text and view userpage btn */
   list-style: none;
   margin: 0;
   padding: 0;
@@ -36,7 +53,7 @@ body {
   background-repeat: no-repeat; /*so images don't repeat vert or horz*/
   opacity: 0;
   z-index: 0; /*background images behind text and button*/
-  animation: image 50s linear infinite; /*allows fade images in and out; name (image) is arbitrary. 50 seconds total. linear means same speed from beginning to end. loop infinitely*/
+  animation: image 70s linear infinite; /*allows fade images in and out; name (image) is arbitrary. 70 seconds total. linear means same speed from beginning to end. loop infinitely*/
 }
 
 .slideshow li:nth-child(1) { 
@@ -55,23 +72,32 @@ body {
   animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
-  background-image: url(https://images.unsplash.com/photo-1512000025522-c6c38b5ba04f?auto=format&fit=crop&w=2550&q=80);
+  background-image: url(https://images.unsplash.com/photo-1504619988368-2911f094bac5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=16b49cb3c2bb7b14c7c7c6ff5565abbd&auto=format&fit=crop&w=1650&q=80);
   animation-delay: 40s; 
 }
+.slideshow li:nth-child(6) { 
+  background-image: url(https://images.unsplash.com/photo-1416174023108-e489d786514c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=57eafb16243ca18a4c69a318406739bb&auto=format&fit=crop&w=1655&q=80);
+  animation-delay: 50s; 
+}
+.slideshow li:nth-child(7) { 
+  background-image: url(https://images.unsplash.com/photo-1512000025522-c6c38b5ba04f?auto=format&fit=crop&w=2550&q=80);
+  animation-delay: 60s; 
+}
+
 
 @keyframes image { /*tells what happens at varoius keyframes in animation*/
-  0% { /*animation goes from 0 to 100 percent but we're only concerned with what happens in 0 to 30. each successive image overlaps some part of this (eg while 1st is ending 2nd is beginning */
+  0% { /*animation goes from 0 to 100 percent but this only concerns what happens in 0 to 18. each successive image overlaps some part of this (eg while 1st is ending 2nd is beginning */
     opacity: 0; 
     animation-timing-function: ease-in;
   }
-  10% {
+  6% {
     opacity: 1;
     animation-timing-function: ease-out; 
   }
-  20% {
+  12% {
     opacity: 1
   }
-  30% {
+  18% {
     opacity: 0
   }
 }
