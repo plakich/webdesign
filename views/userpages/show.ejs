@@ -13,11 +13,14 @@
                
             </div>
          </div>
-         <div class="well">
-            <div class="text-right">
-                <a class="btn btn-success" href="/userpages/<%= userpage._id %>/comments/new">Add New Comment</a>
-            </div>
-            <hr>
+         <div id="commentContainer" class="well">
+            <form action="/" method="POST">
+               <textarea id="userComment" placeholder="Add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..."></textarea>
+               <div class="text-right">
+                   <a class="btn btn-success disabled" href="/userpages/<%= userpage._id %>/comments/new">Add Comment</a>
+               </div>
+            </form>
+            
             
          </div>
       </div>
@@ -31,4 +34,17 @@
       </div>
    </div>
    
-<% include ../partials/footer %>
+</div><!-- /.container -->
+<!-- jquery cdn-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <!-- Bootstrap JS CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+crossorigin="anonymous"></script>
+  <!-- ajax.js -->
+  <script src="../javascript/ajax.js"></script>
+  <script src="../javascript/userComment.js"></script>
+    </body>
+</html>
