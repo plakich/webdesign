@@ -187,27 +187,14 @@ body {
     outline: none;
     border: none;
     border-bottom: 1px solid lightgrey;
+    padding-bottom: 3px;
     resize: none;
     overflow: hidden;
     
 }
 
-
-
 #userComment:focus {
     outline: none;
-}
-
-
-.commentSlide::after {
-    position:absolute;
-	content: '';
-	height: 2px;
-    background: grey;
-    border: 10px solid grey;
-    transition: all 0.3s linear;
-    width: 100%;
-    
 }
 
 
@@ -216,4 +203,17 @@ body {
     border-radius: 5px; 
     background-color: white;
 }
+
+#commentContainer::after {
+    position:absolute;
+	content: '';
+	height: 2px;
+    background: grey;
+    border-bottom: 2px solid black;
+    transition: all 0.3s linear;
+    width: 92%;
+    bottom: 80px;
+    transform: scaleX(0);
+}
+
 
