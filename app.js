@@ -8,9 +8,12 @@ var app = express(),
     session = require("express-session"),
     User = require("./models/user");
     
+    
 //requiring routes
 var userpageRoutes = require("./routes/userpages"),
-    indexRoutes = require("./routes/index");
+    indexRoutes = require("./routes/index"),
+    commentRoutes = require("./routes/comments");
+
 
 mongoose.connect("mongodb://localhost/over_hyped");
 
@@ -42,6 +45,7 @@ app.use(function(req, res, next){
 
 app.use("/", indexRoutes); 
 app.use("/userpages", userpageRoutes);  
+app.use("/userpages/:id/comments", commentRoutes);
 
 //listener
 app.listen(process.env.PORT,process.env.IP,function(){

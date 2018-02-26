@@ -14,12 +14,32 @@
             </div>
          </div>
          <div id="commentContainer" class="well">
-            <form action="/" method="POST">
+            <form id="commentForm" action="/userpages/<%= userpage._id %>/comments" method="POST">
                <textarea id="userComment" placeholder="Add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..."></textarea>
-               <div class="text-right">
-                   <a class="btn btn-success disabled" href="/userpages/<%= userpage._id %>/comments/new">Add Comment</a>
-               </div>
+               
+                   <button class="text-right btn btn-success ">Add Comment</button>
+
             </form>
+            <ul id="commentList">
+            
+               <% userpage.comments.forEach(function(comment){ %> 
+               <li>
+                  <div class="row">
+                     <div class="col-md-12">
+                         <strong><%= comment.author.username %></strong>
+                         
+                         <p>
+                     
+                            <%= comment.text %> 
+                     
+                        </p> 
+                        
+                     </div>
+                  </div>
+               </li>
+               <% }); %> 
+               
+            </ul>
             
             
          </div>
