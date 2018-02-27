@@ -3,10 +3,13 @@
 $('#commentForm').submit(function(e)
 {
     e.preventDefault();
-    alert("here");
+    alert(this.action);
 	var comment = $(this).serialize();
+	var url = this.action.substring(this.action.indexOf('/userpages/'), this.action.length);
+	url += "/";
+	alert(url);
 
-	$.post('/userpages/:id/comments', comment, function(data) {
+	$.post(url, comment, function(data) {
 	    alert("here2");
 		$('#commentList').append(
 			`

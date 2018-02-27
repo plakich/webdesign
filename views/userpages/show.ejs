@@ -10,15 +10,16 @@
                <h4 id="captionName"><%=userpage.name%></h4>
                <hr>
                <p><%= userpage.description%></p>
+              
                
             </div>
          </div>
          <div id="commentContainer" class="well">
             <form id="commentForm" action="/userpages/<%= userpage._id %>/comments" method="POST">
-               <textarea id="userComment" placeholder="Add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..."></textarea>
-               
-                   <button class="text-right btn btn-success ">Add Comment</button>
-
+               <textarea name="comment[text]" id="userComment" placeholder="Add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..."></textarea>
+                  <div class="text-right">
+                     <button class="btn btn-success disabled">Add Comment</button>
+                  </div>
             </form>
             <ul id="commentList">
             
@@ -34,7 +35,7 @@
                      
                         </p> 
                         
-                     </div>
+                        </div>
                   </div>
                </li>
                <% }); %> 

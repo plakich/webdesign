@@ -11,7 +11,7 @@ var Comment = require("../models/comment");
 
 router.post("/", function(req, res) 
 {
-    console.log('here');
+    
      Userpage.findById(req.params.id, function(err, userpage) 
      {
        if(err)
@@ -37,16 +37,17 @@ router.post("/", function(req, res)
                  userpage.comments.push(comment); //each userpage has comments arrary (see userpage.js) and this pushes new comment from the create into the array
                  userpage.save();
                  console.log(comment);
+                 console.log(userpage);
                  
                  if(req.xhr)
                  {
                      res.json(comment);
                  }
-                 else 
-                 {
-                     res.redirect("/userpages/" + userpage._id);
+                //  else 
+                //  {
+                //      res.redirect("/userpages/" + userpage._id);
 
-                 }
+                //  }
                  
              }
            });

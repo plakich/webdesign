@@ -54,16 +54,18 @@ router.get("/new", function(req, res) {
 
 //SHOW Route 
 
-router.get("/:id", function(req, res) {
-    Userpage.findById(req.params.id, function(err, foundUserpage){
-       if(err || !foundUserpage)
+router.get("/:id", function(req, res) 
+{
+    Userpage.findById(req.params.id).populate("comments").exec(function(err, userpage)
+    {   
+       if(err || !userpage)
        {
            console.log(err);
            res.redirect("back");
        }
        else
        {
-           res.render("userpages/show", {userpage:foundUserpage});
+           res.render("userpages/show", {userpage: userpage});
        }
     });
 });
