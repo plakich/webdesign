@@ -1,35 +1,36 @@
 /* global $ */
 
-$('#commentForm').submit(function(e)
+$('#commentForm').on('submit', function(e)
 {
-    e.preventDefault();
+	
+	e.preventDefault();
     alert(this.action);
 	var comment = $(this).serialize();
 	var url = this.action.substring(this.action.indexOf('/userpages/'), this.action.length);
 	url += "/";
-	alert(url);
+	alert(url + '\n' + comment);
 
 	$.post(url, comment, function(data) {
 	    alert("here2");
 		$('#commentList').append(
 			`
 			<li>
-                  <div class="row">
-                     <div class="col-md-12">
-                         <strong>${data.author.username}</strong>
+            	<strong>${data.owner.username}</strong>
                          
-                         <p>
+                	<p class="comments">
                      
-                            ${data.text}
+                    	${data.text}
  
                      
-                        </p> 
+                    </p> 
                         
-                     </div>
-                  </div>
+                    
             </li>
 			`
-			)
-		$('#userComment').val('');
-	})
+			).height('auto').css('marginLeft: -5%').overflow('auto');
+		$('#userComment').val('').height('25px');
+	});
+	
+	
+    
 });

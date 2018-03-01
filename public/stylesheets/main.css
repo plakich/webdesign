@@ -127,6 +127,7 @@ body {
 
 .profile {
     position: relative;
+    height: 100%;
 }
 
 .profile::after {
@@ -214,6 +215,21 @@ body {
     width: 92%;
     bottom: 80px;
     transform: scaleX(0);
+}
+
+.comments {
+    white-space: pre-line;
+    margin-top: -1.5%;
+    border-bottom: 1px solid lightgrey;
+}
+
+#commentList {
+    padding-left: 30px;
+    list-style-type: none;
+    height: auto;
+    overflow: auto;
+
+    
 }
 
 

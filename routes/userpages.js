@@ -24,12 +24,20 @@ router.get("/", function(req, res){
 //CREATE Route 
 
 router.post("/", function(req, res){
-   var name = req.body.name;
+   var name = req.body.name;            
    var image = req.body.image;
    var description = req.body.description;
    
+   //owner can be different from name, since we 
+   //leave the option open for the user to name their page
+   //something other than the name they use to sign up
+   var owner = {
+       id: req.user._id,
+       username: req.user.username
+   }
    
-       var newUserpage = {name: name, image: image, description: description};
+   
+       var newUserpage = {name: name, image: image, description: description, owner: owner};
    
        // Create a new Userpage and save to DB
        Userpage.create(newUserpage, function(err, newlyCreated){

@@ -18,29 +18,9 @@
             <form id="commentForm" action="/userpages/<%= userpage._id %>/comments" method="POST">
                <textarea name="comment[text]" id="userComment" placeholder="Add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..."></textarea>
                   <div class="text-right">
-                     <button class="btn btn-success disabled">Add Comment</button>
+                     <button id="Button" class="btn btn-success" disabled>Add Comment</button>
                   </div>
             </form>
-            <ul id="commentList">
-            
-               <% userpage.comments.forEach(function(comment){ %> 
-               <li>
-                  <div class="row">
-                     <div class="col-md-12">
-                         <strong><%= comment.author.username %></strong>
-                         
-                         <p>
-                     
-                            <%= comment.text %> 
-                     
-                        </p> 
-                        
-                        </div>
-                  </div>
-               </li>
-               <% }); %> 
-               
-            </ul>
             
             
          </div>
@@ -54,6 +34,22 @@
          <div id="map"></div>
       </div>
    </div>
+   <ul id="commentList" class="well col-md-9">
+      <div class="row">
+      <% userpage.comments.forEach(function(comment){ %> 
+         <li>
+            
+                  <strong><%= comment.owner.username %></strong>
+                     <p class="comments">
+                        <%= comment.text %> 
+                     </p> 
+
+         </li>
+      <% }); %> 
+         
+      </div>
+               
+   </ul>
    
 </div><!-- /.container -->
 <!-- jquery cdn-->

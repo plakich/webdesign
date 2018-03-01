@@ -14,15 +14,18 @@ router.post("/", function(req, res)
     
      Userpage.findById(req.params.id, function(err, userpage) 
      {
-       if(err)
-       {
-           console.log(err);
-           res.redirect("/userpages");
-       }
-       else
-       {
+         
+        
+        if(err)
+        {
+            console.log(err);
+            res.redirect("/userpages");
+        }
+        else
+        {
           Comment.create(req.body.comment, function(err, comment)
           {
+              console.log(comment);
              if(err)
              {
                  console.log(err);
@@ -30,13 +33,16 @@ router.post("/", function(req, res)
              else
              {
                  //add username and id to comment
-                 comment.author.id = req.user._id;
-                 comment.author.username = req.user.username; 
+                 comment.owner.id = req.user._id;
+                 comment.owner.username = req.user.username; 
                  //save comment
-                 comment.save(); 
-                 userpage.comments.push(comment); //each userpage has comments arrary (see userpage.js) and this pushes new comment from the create into the array
+                 comment.save();
+                 userpage.comments.push(comment._id); //each userpage has comments arrary (see userpage.js) and this pushes new comment from the create into the array
                  userpage.save();
+
+                 
                  console.log(comment);
+                 console.log('\n');
                  console.log(userpage);
                  
                  if(req.xhr)
@@ -51,7 +57,7 @@ router.post("/", function(req, res)
                  
              }
            });
-        }
+         }
      });
     
 });

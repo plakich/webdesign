@@ -10,7 +10,9 @@
 
 var tx = document.getElementById('userComment');
 var txContainer = document.getElementById('commentContainer');
-var btn = document.querySelector('.text-right > button.disabled');
+var commentForm = document.getElementById('commentForm');
+var btn = document.querySelector('#Button');
+btn.disabled = true;
 
 tx.setAttribute('style', 'height:' + (tx.scrollHeight) + 'px;overflow-y:hidden;');  
 tx.addEventListener("input", OnInput, false); //when contents of textarea are changed
@@ -26,19 +28,30 @@ function OnInput(e)
 
 function OnClick(e)
 {
-  if (event.target === tx) //if textarea was clicked, expand new black border-bottom from center by chaning attr of pseudo elmnt
+  if (event.target === tx) //if textarea was clicked, expand new black border-bottom from center by changing attr of pseudo elmnt
   {
     txContainer.classList.toggle('commentSlide');
     document.styleSheets[1].addRule('#commentContainer::after', 'transform:scaleX(1);'); //stylesheets[0] is bootstrap link
-    btn.classList.remove('disabled');
+    btn.disabled = false;
+    
+    
   }
   else //(event.target !== tx )
   {
     document.styleSheets[1].addRule('#commentContainer::after', 'transform:scaleX(0);');
-    if (event.target !== btn )
+    
+    if (event.target !== btn && !btn.disabled)
     {          
-        btn.classList.add('disabled');
+        btn.disabled = true;
 
+    }
+    else if (event.target === btn)
+    {
+        if ( btn.disabled )
+        {
+            btn.disabled = false;
+
+        }
     }
   }
 }
