@@ -3,7 +3,7 @@
     this code is meant to manipulate the dom to achieve a look
     for the comment box similar to youtube's comment box (expanding from center black bottom-border)
     and textarea box that grows with content. Youtube uses an element from 
-    webcomponents.org called <iron-autogrow-textarea>. I sought to recreate that 
+    webcomponents.org called <iron-autogrow-textarea>. I sought to recreate something similar 
     from scratch. 
 
 */
@@ -40,7 +40,7 @@ function OnClick(e)
   {
     document.styleSheets[1].addRule('#commentContainer::after', 'transform:scaleX(0);');
     
-    if (event.target !== btn && !btn.disabled)
+    if (event.target !== btn && !btn.disabled && isEmpty(tx.value) )
     {          
         btn.disabled = true;
 
@@ -54,4 +54,9 @@ function OnClick(e)
         }
     }
   }
+}
+
+//check str for whitespaces/returns/newlines/ and ignore
+function isEmpty(str){
+    return !str.replace(/^\s+/g, '').length; // boolean (`true` if field is empty)
 }

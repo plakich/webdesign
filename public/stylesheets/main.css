@@ -232,4 +232,12 @@ body {
     
 }
 
+@media (min-width: 1200px) {
+    .thumbnail.userpic {
+        height: 80%;
+        width: 80%;
+    }
+    
+}
+
 

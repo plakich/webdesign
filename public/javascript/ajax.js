@@ -27,7 +27,7 @@ $('#commentForm').on('submit', function(e)
                     
             </li>
 			`
-			).height('auto').css('marginLeft: -5%').overflow('auto');
+			);
 		$('#userComment').val('').height('25px');
 	});
 	
