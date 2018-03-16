@@ -12,7 +12,7 @@ $('#commentForm').on('submit', function(e)
 
 	$.post(url, comment, function(data) {
 	    alert("here2");
-		$('#commentList').append(
+		$('#commentList').prepend(
 			`
 			<li>
             	<strong>${data.owner.username}</strong>

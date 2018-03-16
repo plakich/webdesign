@@ -2,6 +2,10 @@ body {
     background-color: black;
 }
 
+#home-body {
+  font-family: 'Playfair Display', serif;
+}
+
 .page-footer {
   background-color: black;
   position: fixed;
@@ -44,7 +48,7 @@ h1 {
 .btn-primary {
   background-color: transparent;
   border-radius: 50px;
-  width: 15vw;
+  width: 13vw;
   font-size: 140%;
   border-width: 2px;
   transition: background-color 0.4s;

@@ -240,4 +240,30 @@ body {
     
 }
 
+#about-body {
+  font-family: 'Playfair Display', serif;
+  padding: 0;
+}
+
+#about-header {
+    
+    font-size: 400%;
+    width: 45%;
+    border-bottom: 2px solid black;
+    padding-top: 20px;
+
+}
+
+#about-text {
+    font-size: 130%;
+    line-height: 1.7;
+    width: 75%;
+}
+
+#about-back {
+    text-decoration: none;
+    font-size: 120%;
+    margin:0;
+    padding: 0;
+}
 
