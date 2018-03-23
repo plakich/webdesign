@@ -10,6 +10,7 @@ $('#commentForm').on('submit', function(e)
 	url += "/";
 	alert(url + '\n' + comment);
 
+
 	$.post(url, comment, function(data) {
 	    alert("here2");
 		$('#commentList').prepend(
@@ -19,7 +20,7 @@ $('#commentForm').on('submit', function(e)
                          
                 	<p class="comments">
                      
-                    	${data.text}
+                    	${data.text.trim()}
  
                      
                     </p> 

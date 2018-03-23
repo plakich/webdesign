@@ -25,7 +25,7 @@ router.post("/", function(req, res)
         {
           Comment.create(req.body.comment, function(err, comment)
           {
-              console.log(comment);
+             console.log(comment);
              if(err)
              {
                  console.log(err);
@@ -34,7 +34,8 @@ router.post("/", function(req, res)
              {
                  //add username and id to comment
                  comment.owner.id = req.user._id;
-                 comment.owner.username = req.user.username; 
+                 comment.owner.username = req.user.username;
+                 comment.text = comment.text.trim(); //trim newlines and spaces so comment box area is of manageable size
                  //save comment
                  comment.save();
                  userpage.comments.push(comment._id); //each userpage has comments arrary (see userpage.js) and this pushes new comment from the create into the array

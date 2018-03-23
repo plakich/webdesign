@@ -2,9 +2,6 @@ body {
     background-color: black;
 }
 
-#home-body {
-  font-family: 'Playfair Display', serif;
-}
 
 .page-footer {
   background-color: black;
@@ -14,8 +11,14 @@ body {
   height: 17%;
   bottom: 0;
   left: 0;
-  opacity: 0.7;
+  opacity: 0.1;
+  transition: opacity 0.5s;
   color: white;
+}
+
+.page-footer:hover {
+  opacity: 1;
+  transition: opacity 0.5s;
 }
 
 .footer-title {
@@ -43,6 +46,18 @@ h1 {
 
 #home-header h1 {
   color: #fff;
+  margin-bottom: 0;
+}
+
+#home-header-subtitle {
+  color: #000;
+  position: relative;
+  left: 40%;
+  border-bottom: 2px solid black;
+  width: 20%;
+  font-weight: 900;
+  letter-spacing: 4px;
+  
 }
 
 .btn-primary {
@@ -51,6 +66,7 @@ h1 {
   width: 13vw;
   font-size: 140%;
   border-width: 2px;
+  font-weight: 500;
   transition: background-color 0.4s;
   -webkit-transition: background-color 0.4s;
   -moz-transition: background-color 0.4s;
