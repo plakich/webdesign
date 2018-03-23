@@ -24,12 +24,20 @@ router.get("/", function(req, res){
 //CREATE Route 
 
 router.post("/", function(req, res){
-   var name = req.body.name;
+   var name = req.body.name;            
    var image = req.body.image;
    var description = req.body.description;
    
+   //owner can be different from name, since we 
+   //leave the option open for the user to name their page
+   //something other than the name they use to sign up
+   var owner = {
+       id: req.user._id,
+       username: req.user.username
+   }
    
-       var newUserpage = {name: name, image: image, description: description};
+   
+       var newUserpage = {name: name, image: image, description: description, owner: owner};
    
        // Create a new Userpage and save to DB
        Userpage.create(newUserpage, function(err, newlyCreated){
@@ -54,16 +62,18 @@ router.get("/new", function(req, res) {
 
 //SHOW Route 
 
-router.get("/:id", function(req, res) {
-    Userpage.findById(req.params.id, function(err, foundUserpage){
-       if(err || !foundUserpage)
+router.get("/:id", function(req, res) 
+{
+    Userpage.findById(req.params.id).populate("comments").exec(function(err, userpage)
+    {   
+       if(err || !userpage)
        {
            console.log(err);
            res.redirect("back");
        }
        else
        {
-           res.render("userpages/show", {userpage:foundUserpage});
+           res.render("userpages/show", {userpage: userpage});
        }
     });
 });

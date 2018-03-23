@@ -127,6 +127,7 @@ body {
 
 .profile {
     position: relative;
+    height: 100%;
 }
 
 .profile::after {
@@ -179,4 +180,90 @@ body {
     color: #428bca;
 }
 
+#userComment {
+    
+    position: relative;
+    width: 100%;
+    height: 25px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 3px;
+    resize: none;
+    overflow: hidden;
+    
+}
+
+#userComment:focus {
+    outline: none;
+}
+
+
+#commentContainer {
+    border: 2px solid lightgrey;
+    border-radius: 5px; 
+    background-color: white;
+}
+
+#commentContainer::after {
+    position:absolute;
+	content: '';
+	height: 2px;
+    background: grey;
+    border-bottom: 2px solid black;
+    transition: all 0.3s linear;
+    width: 92%;
+    bottom: 80px;
+    transform: scaleX(0);
+}
+
+.comments {
+    white-space: pre-line;
+    margin-top: -1.5%;
+    border-bottom: 1px solid lightgrey;
+}
+
+#commentList {
+    padding-left: 30px;
+    list-style-type: none;
+    height: auto;
+    overflow: auto;
+
+    
+}
+
+@media (min-width: 1200px) {
+    .thumbnail.userpic {
+        height: 80%;
+        width: 80%;
+    }
+    
+}
+
+#about-body {
+  font-family: 'Playfair Display', serif;
+  padding: 0;
+}
+
+#about-header {
+    
+    font-size: 400%;
+    width: 45%;
+    border-bottom: 2px solid black;
+    padding-top: 20px;
+
+}
+
+#about-text {
+    font-size: 130%;
+    line-height: 1.7;
+    width: 75%;
+}
+
+#about-back {
+    text-decoration: none;
+    font-size: 120%;
+    margin:0;
+    padding: 0;
+}
 

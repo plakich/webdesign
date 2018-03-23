@@ -10,6 +10,11 @@ router.get("/", function(req, res)
    res.render("home"); 
 });
 
+router.get("/about", function(req, res) 
+{
+    res.render("about");
+    
+})
 //AUTH Routes
 
 router.get("/register", function(req, res)
@@ -20,7 +25,7 @@ router.get("/register", function(req, res)
 
 router.post("/register", function(req, res)
 {
-    var newUser = new User({username: req.body.username});
+    var newUser = new User({username: req.body.username, isAdmin: false, hasProfile: false});
     User.register(newUser, req.body.password, function(err, user) //register() takes care of hash/salt for password
     { 
         if(err)

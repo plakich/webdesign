@@ -45,17 +45,19 @@
                     passError.classList.remove("error");
                 }
                 
-                if ( confirm.value && pass.value && !(confirm.value === pass.value) ) 
+                if ( confirm.value && pass.value && !(confirm.value === pass.value) )
                 {
                     confirm.classList.add('warning');
                     confirmError.innerHTML = "<em>! Passwords must match.</em>";
                     confirmError.classList.add('error');
+                    validate = false;
                 }
                 else if ( !confirm.value && pass.value ) //if user didn't reenter password at all
                 {
                     confirm.classList.add('warning');
                     confirmError.innerHTML = "<em>! Type in your password again.</em>";
                     confirmError.classList.add('error');
+                    validate = false;
                 }
                 else
                 {

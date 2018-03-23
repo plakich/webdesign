@@ -4,14 +4,16 @@
         <title>Overhyped HomePage</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="/stylesheets/home.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
     </head>
     <body>
     
     
     <div id="home-header">
- 		<h1>Welcome to Overhyped</h1>
-		<a href="/userpages" class="btn btn-lg btn-success">Explore</a>
+ 		<h1>Welcome to OverHyped</h1>
+ 		<p id="home-header-subtitle">A Photo-Blog Site</p>
+		<a href="/userpages" class="btn btn-lg btn-primary btn-responsive">Explore</a>
     </div>
     
     <ul class="slideshow">
@@ -23,5 +25,66 @@
       <li></li>
       <li></li>
     </ul>
+    
+    
+ <footer class="page-footer font-small">
+        
+          <div class="container text-center">
+      
+              <!-- Footer links -->
+              <div class="row text-center">
+      
+                  <!--First column-->
+                  <div class="col-xs-3">
+                      <h6 class="text-uppercase footer-title">OverHyped</h6>
+                      <p>Going beyond the hype, our site delivers. Explore, register, and create a profile today! Once you create your profile, you can start posting photos to your photoblog and comment on other pages.
+                       </p> 
+                  </div>
+                  <!--/.First column-->
+                  
+      
+                  <!--Second column-->
+                  <div class="col-xs-3">
+                      <h6 class="text-uppercase footer-title">Information</h6>
+                      <p><a href="/about">About</a></p>
+                      <p><a href="#!">Portfolio</a></p>
+                  </div>
+                  <!--/.Second column-->
+      
 
-<% include partials/footer %>
+                  <!--Third column-->
+                  <div class="col-xs-3">
+                      <h6 class="text-uppercase footer-title">Contact Admin</h6>
+                      <p><i class="fa fa-home mr-3"></i> Crown Point, IN 46307, US</p>
+                      <p><i class="fa fa-envelope mr-3"></i> philliplakich@gmail.com</p>
+                      <p><i class="fa fa-phone mr-3"></i> (219) 381-0894</p>
+                  </div>
+                  <!--/.Third column-->
+                  
+                  <!--Fourth column-->
+                  <div class="col-xs-3">
+      
+                      <!--Copyright-->
+                      <p class="text-center" id="footer-copyright">
+                          © 2018 Copyright: <a href="https://mdbootstrap.com/material-design-for-bootstrap/">
+                              <strong> overhyped.com</strong>
+                                            </a>
+                      </p>
+                      <!--/.Copyright-->
+      
+                  </div>
+                  <!--/.Fourth column-->
+      
+              </div>
+              <!-- Footer links -->
+      
+      
+          </div>
+      
+        
+    </footer>
+    
+<% include ./partials/footer %>
+    
+   
+
