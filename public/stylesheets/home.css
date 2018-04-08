@@ -50,10 +50,10 @@ h1 {
 }
 
 #home-header-subtitle {
-  color: #000;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 8px #000;
   position: relative;
   left: 40%;
-  border-bottom: 2px solid black;
   width: 20%;
   font-weight: 900;
   letter-spacing: 4px;
