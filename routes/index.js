@@ -45,14 +45,18 @@ router.post("/register", function(req, res)
 router.get("/login", function(req, res)
 {
    var errors; 
-   
+
    if ( req.session.messages )
    {
         errors = "Invalid username or password";
    }
+   else if ( !!req.query.msg )
+   {
+       errors = req.query.msg;
+   }
    req.session.messages = undefined;
    
-   res.render("login", { loginErrors: errors });
+   res.render("login", { loginErrors: errors});
 
 });
 
