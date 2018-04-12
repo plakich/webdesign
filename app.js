@@ -6,7 +6,9 @@ var app = express(),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
     session = require("express-session"),
-    User = require("./models/user");
+    User = require("./models/user"),
+    methodOverride = require("method-override");
+    
     
     
 //requiring routes
@@ -19,8 +21,9 @@ mongoose.connect("mongodb://localhost/over_hyped");
 
 
 app.set("view engine", "ejs");
-app.use(express.static(__dirname + "/public")); //may have to change to dirname + public and also add one for partials
+app.use(express.static(__dirname + "/public")); 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method")); //for PUT and DELETE requests
 
 //Configure Passport
 app.use(session({
