@@ -65,7 +65,7 @@ router.post("/", middleware.isLoggedIn, function(req, res)
 });
 
 //EDIT ROUTE
-router.get("/:comment_id/edit", function(req, res) 
+router.get("/:comment_id/edit", middleware.isLoggedIn, function(req, res) 
 {
     Userpage.findById(req.params.id, function(err, userpage)
     {

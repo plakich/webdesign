@@ -31,7 +31,7 @@ var expandIcon = document.querySelector('.fa-expand');
 var tx = document.getElementById('userComment');
 var txContainer = document.getElementById('commentContainer');
 //var commentForm = document.getElementById('commentForm'); 
-var btn = document.querySelector('#Button');
+var btn = document.querySelector('#Button'); //could've used getElementById; just showing different ways to select
 
 if (btn.textContent === 'Login To Comment') //if user is not logged in, make btn active so user can click to login
 {
