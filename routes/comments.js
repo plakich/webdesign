@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router({mergeParams: true}); //the merge params obj is so we can access :id from route, else it doesn't get passed to comments.js from app.js
 var Userpage = require("../models/userpage");
 var Comment = require("../models/comment");
+var middleware = require("../middleware");
 
 //========================
 //COMMENTS ROUTES
@@ -9,7 +10,7 @@ var Comment = require("../models/comment");
 
 //CREATE ROUTE
 
-router.post("/", function(req, res) 
+router.post("/", middleware.isLoggedIn, function(req, res) 
 {
     
      Userpage.findById(req.params.id, function(err, userpage) 
@@ -50,17 +51,43 @@ router.post("/", function(req, res)
                  {
                      res.json(comment);
                  }
-                //  else 
-                //  {
-                //      res.redirect("/userpages/" + userpage._id);
+                 else //shouldn't ever make it here
+                 {
+                     res.redirect("/userpages/" + userpage._id);
 
-                //  }
+                 }
                  
              }
            });
          }
      });
     
+});
+
+//EDIT ROUTE
+router.get("/:comment_id/edit", function(req, res) 
+{
+    Userpage.findById(req.params.id, function(err, userpage)
+    {
+        if(err || !userpage)
+        {
+            res.redirect("back");
+        }
+        else
+        {
+            Comment.findById(req.params.comment_id, function(err, comment)
+            {
+                if(err)
+                {
+                    res.redirect("back");
+                }
+                else
+                {
+                    res.render("comments/edit", {userpage: userpage, comment: comment});
+                }
+            });
+        }
+    });
 });
 
 module.exports = router;

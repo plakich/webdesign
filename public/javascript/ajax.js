@@ -17,7 +17,7 @@ $('#commentForm').on('submit', function(e)
 			`
 			<li>
             	<strong>${data.owner.username}</strong>
-                         
+                    
                 	<p class="comments">
                      
                     	${data.text.trim()}

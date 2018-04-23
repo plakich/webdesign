@@ -10,13 +10,14 @@ router.get("/", function(req, res)
    res.render("home"); 
 });
 
+// About-Page Route
 router.get("/about", function(req, res) 
 {
     res.render("about");
     
-})
-//AUTH Routes
+});
 
+//AUTH Routes
 router.get("/register", function(req, res)
 {
 

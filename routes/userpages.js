@@ -103,10 +103,8 @@ router.put("/:id", middleware.checkUserpageOwnership, function(req, res){       
     var newData = {name: req.body.userpage.name, image: req.body.userpage.image, description: req.body.userpage.description};
     Userpage.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, userpage){
         if(err){
-            req.flash("error", err.message);
             res.redirect("back");
         } else {
-            req.flash("success","Successfully Updated!");
             res.redirect("/userpages/" + userpage._id);
         }
     });

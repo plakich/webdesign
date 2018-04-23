@@ -18,9 +18,8 @@ var middlewareObj = {
         if(req.isAuthenticated())
         {
             Userpage.findById(req.params.id, function(err, userpage){
-                if(err || !userpage)
+                if(err || !userpage) //if error or no user page with id exists
                 {
-                    
                     res.redirect("back");
                 }
                 else
