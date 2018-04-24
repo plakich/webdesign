@@ -245,6 +245,24 @@ body {
 }
 
 
+#userCommentEdit {
+    
+    position: relative;
+    width: 100%;
+    height: 25px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 3px;
+    resize: none;
+    overflow: hidden;
+    
+}
+
+#userCommentEdit:focus {
+    outline: none;
+}
+
 #commentContainer {
     border: 2px solid lightgrey;
     border-radius: 5px; 
@@ -260,6 +278,24 @@ body {
     transition: all 0.3s linear;
     width: 92%;
     bottom: 80px;
+    transform: scaleX(0);
+}
+
+#commentContainerEdit {
+    border: 2px solid lightgrey;
+    border-radius: 5px; 
+    background-color: white;
+}
+
+#commentContainerEdit::after {
+    position:absolute;
+	content: '';
+	height: 2px;
+    background: grey;
+    border-bottom: 2px solid black;
+    transition: all 0.3s linear;
+    width: 33%;
+    bottom: 100px;
     transform: scaleX(0);
 }
 
@@ -385,3 +421,47 @@ body {
 }
 
 
+#cameraContainer {
+    text-align: center;
+    transition: background, opacity, background-color 0.4s;
+    
+}
+
+#cameraContainer:hover {
+    background-color: rgb(255, 255, 255);
+    background: radial-gradient(ellipse farthest-corner,
+      white, lightblue 10%, #1e90ff 50%, white);
+}
+
+#cameraContainer .fa-certificate {
+    transition: opacity 0.4s;
+    opacity: 0;
+}
+
+#cameraContainer:hover .fa-certificate {
+    opacity: 1;
+    color: rgb(155,194,207);
+}
+
+#cameraContainer .fa-camera {
+    transition: opacity, transform 0.4s;
+
+}
+
+#cameraContainer:hover .fa-camera {
+    transform: rotate(45deg);
+    opacity: 0.5;
+}
+
+#cameraContainer p:nth-of-type(2) {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+#cameraContainer:hover p:nth-of-type(2) {
+    opacity: 1;
+}
+
+#photoblogLink {
+    text-decoration: none;
+}

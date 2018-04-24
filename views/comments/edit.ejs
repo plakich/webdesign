@@ -37,14 +37,15 @@
                 </div>
             </nav>
     
-            
-            <div class="container loginSignBorder" style="margin-top: 70px">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="loginSignBorder container" style="margin-top: 70px">
             
                     <h1 style="text-align: center">Edit Your Comment</h1>
                         
-                            <div id="commentContainer" class="well">
+                            <div id="commentContainerEdit" class="well">
                                 <form action="/userpages/<%= userpage._id %>/comments/<%= comment._id %>/?_method=PUT" method="POST">
-                                   <textarea name="comment[text]" id="userComment" placeholder="Edit comment..."><%= comment.text %></textarea>
+                                   <textarea name="comment[text]" id="userCommentEdit" placeholder="Edit comment..."><%= comment.text %></textarea>
                                       <div class="text-right">
                                          <button id="Button" class="btn btn-success" disabled>Submit Changes</button>
                                       </div>
@@ -54,7 +55,8 @@
                             <a href="/userpages/<%= userpage._id%>">Go Back</a>
             
             </div><!-- /.container -->
-            
+          </div> <!--col-xs-12 -->
+        </div> <!--row -->
 <!-- jquery cdn-->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="

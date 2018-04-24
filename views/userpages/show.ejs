@@ -38,7 +38,7 @@
             </div>
         </nav>
         
-        <div class="container">
+<div class="container">
 
    <div class="row">
       <div class="col-xs-9">
@@ -64,7 +64,7 @@
               
                
             </div>
-         </div>
+         </div> <!-- thumbnail userpic -->
          <div id="commentContainer" class="well">
             <% if (currentUser) { %>
             
@@ -84,9 +84,18 @@
             <% } %>
             
             
-         </div>
+         </div><!--comment container-->
+      </div><!--col-xs-9-->
+      <div class="col-xs-3">
+        <a id="photoblogLink" href="/userpages/<%=userpage._id%>/photos">
+          <div class="lead well" id="cameraContainer">
+              <p>Visit <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> Photoblog! </p>
+              <span class="fa-layers"><i class="fas fa-camera fa-4x"></i><i class="fas fa-certificate fa-sm"></i></span>
+              <p>Take More Photos!</p>
+          </div>
+        </a>
       </div>
-   </div>
+   </div><!--row-->
    <ul id="commentList" class="well col-md-9">
       <div class="row">
       <% userpage.comments.forEach(function(comment){ %> 

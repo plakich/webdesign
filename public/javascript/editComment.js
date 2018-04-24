@@ -5,12 +5,14 @@
     and textarea box that grows with content. Youtube uses an element from 
     webcomponents.org called <iron-autogrow-textarea>. I sought to recreate something similar 
     from scratch. 
+    
+    This code is essentially the same as userComment.js with small tweaks so it targets the 
+    new form on the edit page. 
 
 */
-alert('here');
 
-var tx = document.getElementById('userComment');
-var txContainer = document.getElementById('commentContainer');
+var tx = document.getElementById('userCommentEdit');
+var txContainer = document.getElementById('commentContainerEdit');
 var btn = document.querySelector('#Button');
 
 
@@ -19,14 +21,13 @@ btn.disabled = true; //page starts in state of blank comment textbox with submit
 tx.setAttribute('style', 'height:' + (tx.scrollHeight) + 'px;overflow-y:hidden;'); 
 
 tx.addEventListener("input", OnInput, false); //for when contents of textarea are changed
-document.body.addEventListener("click", OnClick, false); //listen for clicks in window
+window.addEventListener("click", OnClick, false); //listen for clicks in window
 
 
 
 //grows textarea box with newlines and shrinks with deletions and backspace on line start
 function OnInput(e) 
 {
-    alert('here');
   // 'this' refers here to tx
   
   this.style.height = '25px'; //set to 25px so bottom of content always touches border-bottom
@@ -50,12 +51,12 @@ function OnClick(e)
   if (event.target === tx) //if textarea was clicked, expand new black border-bottom from center by changing attr of pseudo elmnt
   {
     txContainer.classList.toggle('commentSlide');
-    document.styleSheets[1].addRule('#commentContainer::after', 'transform:scaleX(1);'); //stylesheets[0] is bootstrap link
+    document.styleSheets[1].addRule('#commentContainerEdit::after', 'transform:scaleX(1);'); //stylesheets[0] is bootstrap link
     
   }
   else //(event.target !== tx )
   {
-    document.styleSheets[1].addRule('#commentContainer::after', 'transform:scaleX(0);'); //user clicked outside txarea, so collapse bottom border
+    document.styleSheets[1].addRule('#commentContainerEdit::after', 'transform:scaleX(0);'); //user clicked outside txarea, so collapse bottom border
     
    
     
