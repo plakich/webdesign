@@ -14,7 +14,8 @@ var app = express(),
 //requiring routes
 var userpageRoutes = require("./routes/userpages"),
     indexRoutes = require("./routes/index"),
-    commentRoutes = require("./routes/comments");
+    commentRoutes = require("./routes/comments"),
+    photoRoutes = require("./routes/photos");
 
 
 mongoose.connect("mongodb://localhost/over_hyped");
@@ -49,6 +50,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes); 
 app.use("/userpages", userpageRoutes);  
 app.use("/userpages/:id/comments", commentRoutes);
+app.use("/userpages/:id/photos", photoRoutes);
 
 //listener
 app.listen(process.env.PORT,process.env.IP,function(){
