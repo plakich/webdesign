@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router({mergeParams: true}); //the merge params obj is so we can access :id from route, else it doesn't get passed to comments.js from app.js
 var Userpage = require("../models/userpage");
 var Comment = require("../models/comment");
+var middleware = require("../middleware");
 
 //========================
 //COMMENTS ROUTES
@@ -9,7 +10,7 @@ var Comment = require("../models/comment");
 
 //CREATE ROUTE
 
-router.post("/", function(req, res) 
+router.post("/", middleware.isLoggedIn, function(req, res) 
 {
     
      Userpage.findById(req.params.id, function(err, userpage) 
@@ -50,11 +51,11 @@ router.post("/", function(req, res)
                  {
                      res.json(comment);
                  }
-                //  else 
-                //  {
-                //      res.redirect("/userpages/" + userpage._id);
+                 else //shouldn't ever make it here
+                 {
+                     res.redirect("/userpages/" + userpage._id);
 
-                //  }
+                 }
                  
              }
            });
@@ -62,5 +63,66 @@ router.post("/", function(req, res)
      });
     
 });
+
+//EDIT ROUTE
+router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res) 
+{
+    Userpage.findById(req.params.id, function(err, userpage)
+    {
+        if(err || !userpage)
+        {
+            res.redirect("back");
+        }
+        else
+        {
+            Comment.findById(req.params.comment_id, function(err, comment)
+            {
+                if(err)
+                {
+                    res.redirect("back");
+                }
+                else
+                {
+                    res.render("comments/edit", {userpage: userpage, comment: comment});
+                }
+            });
+        }
+    });
+});
+
+//COMMENT UPDATE ROUTE
+router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res) 
+{
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, comment)
+    {
+        if(err)
+        {
+            res.redirect("back");
+        }
+        else //redirect back to userpage show page
+        {
+            res.redirect("/userpages/" + req.params.id);
+        }
+    });
+});
+
+//DESTROY/DELETE ROUTE
+router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, res)
+{
+    Comment.findByIdAndRemove(req.params.comment_id, function(err)
+    {
+       if(err)
+       {
+           console.log(err);
+           res.redirect("back");
+       }
+       else
+       {
+           res.redirect("/userpages/" + req.params.id);
+       }
+    });
+    
+});
+
 
 module.exports = router;

@@ -1,46 +1,122 @@
-<% include ../partials/header %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Overhyped</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    </head>
+    <body>
+        
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
 
+                    <a class="navbar-brand" href="/">OverHyped</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="<%= typeof page !== 'undefined' && page === 'userpages' ? 'active' : '' %>"><a href="/userpages">Home</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                      <% if(!currentUser){ %> 
+                      <li><a href="/login">Login</a></li>
+                      <li><a href="/register">Sign Up</a></li>
+                    <% } else { %>
+                      <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+                      <li><a href="/logout">Logout</a></li>
+                    <% } %>
+                  </ul>
+                </div>
+            </div>
+        </nav>
+        
+<div class="container">
 
    <div class="row">
-      <div class="col-md-9 col-xs-9">
+      <div class="col-xs-9">
          <div class="thumbnail userpic">
             <img class="image-responsive" src="<%= userpage.image%>">
             <div class="caption-full">
               
-               <h4 id="captionName"><%=userpage.name%></h4>
+               <% if (currentUser && userpage.owner.id.equals(currentUser._id)){ %>
+                   <h4 id="captionName"><%=userpage.name%><span><i class="fas fa-ellipsis-v"></i></span></h4>
+               <% } else { %>
+                   <h4 id="captionName"><%=userpage.name%></h4>
+               <% } %>
+               <div id="dropdown">
+               <% if (currentUser && userpage.owner.id.equals(currentUser._id)) {%> <!--userpage.owner.id is mongoose obj so have to use equals to compare it to currentUser._id which is string-->
+                   <a href="/userpages/<%=userpage._id%>/edit">Edit</a>
+                   <form action="/userpages/<%=userpage._id%>/?_method=DELETE" method="POST">
+                       <button>Delete</button>
+                   </form>
+               <% } %>
+               </div>
                <hr>
-               <p><%= userpage.description%></p>
+               <p><%= userpage.description%><span><i class="fas fa-expand"></i></span></p>
               
                
             </div>
-         </div>
+         </div> <!-- thumbnail userpic -->
          <div id="commentContainer" class="well">
-            <form id="commentForm" action="/userpages/<%= userpage._id %>/comments" method="POST">
-               <textarea name="comment[text]" id="userComment" placeholder="Add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..."></textarea>
-                  <div class="text-right">
-                     <button id="Button" class="btn btn-success" disabled>Add Comment</button>
-                  </div>
-            </form>
+            <% if (currentUser) { %>
+            
+                <form id="commentForm" action="/userpages/<%= userpage._id %>/comments" method="POST">
+                   <textarea name="comment[text]" id="userComment" placeholder="Add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..."></textarea>
+                      <div class="text-right">
+                         <button id="Button" class="btn btn-success" disabled>Add Comment</button>
+                      </div>
+                </form>
+            <% } else { %>
+                <form action="/login" method="GET">
+                   <textarea name="comment[text]" id="userComment" placeholder="Login to add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..." disabled></textarea>
+                      <div class="text-right">
+                         <button id="Button" class="btn btn-success" disabled>Login To Comment</button>
+                      </div>
+                </form>
+            <% } %>
             
             
-         </div>
+         </div><!--comment container-->
+      </div><!--col-xs-9-->
+      <div class="col-xs-3">
+        <a id="photoblogLink" href="/userpages/<%=userpage._id%>/photos">
+          <div class="lead well" id="cameraContainer">
+              <p>Visit <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> Photoblog! </p>
+              <span class="fa-layers"><i class="fas fa-camera fa-4x"></i><i class="fas fa-certificate fa-sm"></i></span>
+              <p>Take More Photos!</p>
+          </div>
+        </a>
       </div>
-      <div class="col-md-3">
-         <div class="list-group">
-            <li class="list-group-item disabled">My Photo-Blog: <em>Coming Soon</em></li>
-         </div>
-         <div id="map"></div>
-      </div>
-   </div>
+   </div><!--row-->
    <ul id="commentList" class="well col-md-9">
       <div class="row">
       <% userpage.comments.forEach(function(comment){ %> 
          <li>
-            
-                  <strong><%= comment.owner.username %></strong>
+             <% if (currentUser && comment.owner.id.equals(currentUser._id)) { %>
+                 <strong><%= comment.owner.username %><span class="glyphicon glyphicon-option-vertical"></span></strong>
+                     <div class="dropdown2">
+                         <a href="/userpages/<%= userpage._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                         <form action="/userpages/<%=userpage._id%>/comments/<%=comment._id%>/?_method=DELETE" method="POST">
+                             <button>Delete</button>
+                         </form>
+                     </div>
                      <p class="comments">
                         <%= comment.text %> 
-                     </p> 
+                     </p>
+             <% } else { %>   
+                 <strong><%= comment.owner.username %></strong>
+                     <p class="comments">
+                        <%= comment.text %> 
+                     </p>
+             <% } %>
 
          </li>
       <% }); %> 
@@ -59,7 +135,7 @@
 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
 crossorigin="anonymous"></script>
   <!-- ajax.js -->
-  <script src="../javascript/ajax.js"></script>
-  <script src="../javascript/userComment.js"></script>
+  <script src="/javascript/ajax.js"></script>
+  <script src="/javascript/userComment.js"></script>
     </body>
 </html>

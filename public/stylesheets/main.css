@@ -178,6 +178,52 @@ body {
 
 #captionName {
     color: #428bca;
+    
+}
+
+#captionName + p {
+    display: inline-block;
+}
+
+.caption-full {
+    position: relative;
+}
+
+.fa-expand {
+    position: absolute;
+    right: 2%;
+    bottom: 10%;
+    transition: transform 0.2s;
+
+}
+
+.fa-expand:hover {
+    transform: scaleX(1.5);
+    
+}
+
+.fa-ellipsis-v {
+    
+    position: absolute;
+    right: 2%;
+    bottom: 60%;
+    transition: transform 0.2s;
+    
+}
+
+.fa-ellipsis-v:hover {
+    transform: scale(1.5, 1.5);
+}
+
+.glyphicon-option-vertical {
+    transition: transform 0.2s;
+    color: #428bca;
+    position: relative;
+    left: 95%;
+}
+
+.glyphicon-option-vertical:hover {
+    transform: scale(1.5, 1.5);
 }
 
 #userComment {
@@ -199,6 +245,24 @@ body {
 }
 
 
+#userCommentEdit {
+    
+    position: relative;
+    width: 100%;
+    height: 25px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 3px;
+    resize: none;
+    overflow: hidden;
+    
+}
+
+#userCommentEdit:focus {
+    outline: none;
+}
+
 #commentContainer {
     border: 2px solid lightgrey;
     border-radius: 5px; 
@@ -217,6 +281,24 @@ body {
     transform: scaleX(0);
 }
 
+#commentContainerEdit {
+    border: 2px solid lightgrey;
+    border-radius: 5px; 
+    background-color: white;
+}
+
+#commentContainerEdit::after {
+    position:absolute;
+	content: '';
+	height: 2px;
+    background: grey;
+    border-bottom: 2px solid black;
+    transition: all 0.3s linear;
+    width: 33%;
+    bottom: 100px;
+    transform: scaleX(0);
+}
+
 .comments {
     white-space: pre-line;
     margin-top: -1.5%;
@@ -232,13 +314,17 @@ body {
     
 }
 
-@media (min-width: 1200px) {
-    .thumbnail.userpic {
-        height: 80%;
-        width: 80%;
-    }
-    
+.userpic {
+    height: 80%;
+    width: 80%;
 }
+
+.expand-userpic {
+    height: 100%;
+    width: 100%;
+}
+    
+
 
 #about-body {
   font-family: 'Playfair Display', serif;
@@ -267,3 +353,115 @@ body {
     padding: 0;
 }
 
+#dropdown {
+    display:none;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    position: absolute;
+    right: -7%;
+    bottom: -15%;
+    background-color: #fff;
+
+}
+
+#dropdown a, #dropdown button {
+    display: block;
+    text-decoration: none;
+    padding: 12px 16px;
+    transition: color, background-color 0.5s;
+    border: none;
+    background-color: white;
+    color: #428bca;
+    
+}
+
+#dropdown a:hover {
+    background-color:#fd7e14;
+    color: #fff;
+}
+
+#dropdown button:hover {
+    background-color:#dc3545;
+    color: #fff;
+}
+
+.show {
+    display: block;
+}
+
+.dropdown2 {
+    display:none;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    position: absolute;
+    background-color: #fff;
+    right: 0;
+
+}
+
+.dropdown2 a:hover {
+    background-color:#fd7e14;
+    color: #fff;
+}
+
+.dropdown2 button:hover {
+    background-color:#dc3545;
+    color: #fff;
+}
+
+.dropdown2 a, .dropdown2 button {
+    display: block;
+    text-decoration: none;
+    padding: 12px 16px;
+    transition: color, background-color 0.5s;
+    border: none;
+    background-color: white;
+    color: #428bca;
+    
+}
+
+
+#cameraContainer {
+    text-align: center;
+    transition: background, opacity, background-color 0.4s;
+    
+}
+
+#cameraContainer:hover {
+    background-color: rgb(255, 255, 255);
+    background: radial-gradient(ellipse farthest-corner,
+      white, lightblue 10%, #1e90ff 50%, white);
+}
+
+#cameraContainer .fa-certificate {
+    transition: opacity 0.4s;
+    opacity: 0;
+}
+
+#cameraContainer:hover .fa-certificate {
+    opacity: 1;
+    color: rgb(155,194,207);
+}
+
+#cameraContainer .fa-camera {
+    transition: opacity, transform 0.4s;
+
+}
+
+#cameraContainer:hover .fa-camera {
+    transform: rotate(45deg);
+    opacity: 0.5;
+}
+
+#cameraContainer p:nth-of-type(2) {
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+#cameraContainer:hover p:nth-of-type(2) {
+    opacity: 1;
+}
+
+#photoblogLink {
+    text-decoration: none;
+}

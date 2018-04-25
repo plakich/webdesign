@@ -50,10 +50,10 @@ h1 {
 }
 
 #home-header-subtitle {
-  color: #000;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px 8px #000;
   position: relative;
   left: 40%;
-  border-bottom: 2px solid black;
   width: 20%;
   font-weight: 900;
   letter-spacing: 4px;
@@ -79,7 +79,7 @@ h1 {
 
 
 
-.slideshow { /*selects unordered list*/
+.imageAnimation { /*selects unordered list*/
   position: fixed; 
   width: 100%; /*set width and height to 100 so it takes up whole page*/
   height: 100%;
@@ -91,7 +91,7 @@ h1 {
   padding: 0;
 }
 
-.slideshow li { 
+.imageAnimation li { 
   width: 100%;
   height: 100%;
   position: absolute;
@@ -105,30 +105,30 @@ h1 {
   animation: image 70s linear infinite; /*allows fade images in and out; name (image) is arbitrary. 70 seconds total. linear means same speed from beginning to end. loop infinitely*/
 }
 
-.slideshow li:nth-child(1) { 
+.imageAnimation li:nth-child(1) { 
   background-image: url(https://images.unsplash.com/photo-1504270997636-07ddfbd48945?auto=format&fit=crop&w=2551&q=80) 
 }
-.slideshow li:nth-child(2) { 
+.imageAnimation li:nth-child(2) { 
   background-image: url(https://images.unsplash.com/photo-1499389042463-c4adc501cba0?auto=format&fit=crop&w=1567&q=80);
   animation-delay: 10s; /*each image fades in 10 seconds after previous image*/
 }
-.slideshow li:nth-child(3) { 
+.imageAnimation li:nth-child(3) { 
   background-image: url(https://images.unsplash.com/photo-1476357471311-43c0db9fb2b4?auto=format&fit=crop&w=1650&q=80);
   animation-delay: 20s; 
 }
-.slideshow li:nth-child(4) { 
+.imageAnimation li:nth-child(4) { 
   background-image: url(https://images.unsplash.com/photo-1485742032238-7543513eeba6?auto=format&fit=crop&w=1650&q=80);
   animation-delay: 30s; 
 }
-.slideshow li:nth-child(5) { 
+.imageAnimation li:nth-child(5) { 
   background-image: url(https://images.unsplash.com/photo-1504619988368-2911f094bac5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=16b49cb3c2bb7b14c7c7c6ff5565abbd&auto=format&fit=crop&w=1650&q=80);
   animation-delay: 40s; 
 }
-.slideshow li:nth-child(6) { 
+.imageAnimation li:nth-child(6) { 
   background-image: url(https://images.unsplash.com/photo-1416174023108-e489d786514c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=57eafb16243ca18a4c69a318406739bb&auto=format&fit=crop&w=1655&q=80);
   animation-delay: 50s; 
 }
-.slideshow li:nth-child(7) { 
+.imageAnimation li:nth-child(7) { 
   background-image: url(https://images.unsplash.com/photo-1512000025522-c6c38b5ba04f?auto=format&fit=crop&w=2550&q=80);
   animation-delay: 60s; 
 }
@@ -151,7 +151,7 @@ h1 {
   }
 }
 
-/* Older browser support - .no-cssanimations class added by modernizr */
-.no-cssanimations .slideshow li {
+/* For older browsers, this class will be added by modernizr to display static image */
+.no-cssanimations .imageAnimation li {
 	opacity: 1;
 }
