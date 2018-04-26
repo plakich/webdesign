@@ -12,7 +12,8 @@ var middleware = require("../middleware");
 
 router.get("/", function(req, res) 
 {
-    Photo.find({}, function(err, photos)
+    //have to use userpage because userpage model contains array of photos (i.e., the photoblog itself)
+    Userpage.findById(req.params.id, function(err, userpage)
     {
         if(err)
         {
@@ -20,7 +21,7 @@ router.get("/", function(req, res)
         }
         else //render view to display all photos
         {
-            res.render("photos/index", {photos: photos});
+            res.render("photos/index", {userpage: userpage});
         }
     });
     

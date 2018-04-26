@@ -17,7 +17,13 @@ var userpageSchema = new mongoose.Schema({
              ref: "Comment"
             
          }
-       ]
+       ],
+   photos: [
+         {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Photo"
+         }
+      ]
    
 });
 
