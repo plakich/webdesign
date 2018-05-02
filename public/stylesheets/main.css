@@ -485,10 +485,13 @@ body {
     margin: 0 auto;
 }
 
-.photo {
+.photo > img {
     float: left;
     width: 32%;
     margin: 0.66%;
     
 }
 
+.photoDescription {
+    display: none;
+}
