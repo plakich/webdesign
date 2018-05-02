@@ -72,7 +72,7 @@
         <div id="photoblogContainer">
              <% userpage.photos.forEach(function(photo){ %> 
                  <div class="photo" data-toggle="modal" data-target="#myModal">
-                     <img src="<%= photo.image %>">
+                     <img class="photoblogIMG" src="<%= photo.image %>">
                  </div>
                  <div class="photoDescription">
                    <p><%= photo.description %></p>
@@ -90,5 +90,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
 crossorigin="anonymous"></script>
+<!--dom manipulation for photoblog -->
+<script src="/javascript/photoblog.js"></script>
     </body>
 </html>
