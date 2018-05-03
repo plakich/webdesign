@@ -509,19 +509,56 @@ body {
     display: none;
 }
 
-.photoblogIMG {
+.modal {
+    overflow: auto;
+    padding-top: 80px;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
 }
 
 .modal-content {
-    width: 80%;
+    width: 70%;
     margin: auto;
     display: block;
-    text-align: center;
-    height: 150px;
-    max-width: 700px; 
 }
+
+#modalCaption {
+    margin: auto;
+    display: block;
+    width: 70%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
 
 .close {
-    padding-bottom: 80px;
+    position: absolute;
+    top: 25px;
+    right: 50px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    opacity: 1.0;
 }
 
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modifyPhoto {
+    position: absolute;
+    top: 80%;
+    right: 70px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    opacity: 1.0;
+}
