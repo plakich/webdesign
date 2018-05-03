@@ -489,22 +489,39 @@ body {
     float: left;
     width: 32%;
     margin: 0.66%;
-    
+    -webkit-filter: brightness(100%);
+    filter: brightness(100%);
+
 }
+
+.photo:hover > img {
+    -webkit-filter: brightness(70%);
+    filter: brightness(70%);
+    -webkit-transition: brightness 0.2s ease;
+    -moz-transition: brightness 0.2s ease;
+    -o-transition: brightness 0.2s ease;
+    -ms-transition: brightness 0.2s ease;
+    transition: brightness 0.2s ease;
+}
+
 
 .photoDescription {
     display: none;
 }
 
 .photoblogIMG {
-    width: 200%;
 }
 
 .modal-content {
-    width: 130%;
+    width: 80%;
+    margin: auto;
+    display: block;
+    text-align: center;
+    height: 150px;
+    max-width: 700px; 
 }
 
-.modal-dialog {
-    margin: 0 200px;
-    width: 100%;
+.close {
+    padding-bottom: 80px;
 }
+
