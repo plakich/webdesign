@@ -151,7 +151,8 @@ h1 {
   }
 }
 
-/* For older browsers, this class will be added by modernizr to display static image */
+/* For older browsers, this class will be added by modernizr to display static image 
+could also add no-gradients in css.main for userpage photoblog*/
 .no-cssanimations .imageAnimation li {
 	opacity: 1;
 }

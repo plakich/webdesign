@@ -85,7 +85,7 @@ function OnInput(e)
 function OnClick(e) 
 {
   
-  if (!!ellipsis_v && event.target !== ellipsis_v)
+  if (!!ellipsis_v && event.target !== ellipsis_v) //if you didn't click on ellipsis, don't show dropdown edit/delete menu
   {
       dropdown.classList.remove('show');
   }
@@ -119,10 +119,10 @@ function OnClick(e)
     {
         dropdown.classList.toggle('show');
     }
-    else if (!!ellipsis_v2 && !!dropdown2) 
+    else if (!!ellipsis_v2 && !!dropdown2)  //if user is logged in and able to see ellipsis and dropdown menus
     {
         
-        for(let i = 0; i < ellipsis_v2.length; i++)
+        for(let i = 0; i < ellipsis_v2.length; i++) //toggle displaying menu when elipsis icon clicked. 
         {
             if (event.target === ellipsis_v2[i])
             {

@@ -40,7 +40,17 @@
         
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <span id="modifyPhoto">I</span>
+           <% if (currentUser && userpage.owner.id.equals(currentUser._id)){ %>
+                  <span><i id="modifyPhoto" class="fas fa-ellipsis-v"></i></span></h4>
+               <% } %>
+               <div id="dropdownModal">
+               <% if (currentUser && userpage.owner.id.equals(currentUser._id)) {%> <!--userpage.owner.id is mongoose obj so have to use equals to compare it to currentUser._id which is string-->
+                   <a id="modalEdit" href="/userpages/<%=userpage._id%>/photos/">Edit</a>
+                   <form id="modalDelete" action="/userpages/<%=userpage._id%>/photos/" method="POST">
+                       <button>Delete</button>
+                   </form>
+               <% } %>
+               </div>
           <span class="close" data-dismiss="modal" aria-label="Close">X</span>
             <img id="modalPhoto" class="modal-content">
                
@@ -53,7 +63,9 @@
         
         <div id="newPhoto">
             <em><p>Welcome to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> Photoblog!</p></em>
+            <% if (currentUser && userpage.owner.id.equals(currentUser._id)) {%> <!--userpage.owner.id is mongoose obj so have to use equals to compare it to currentUser._id which is string-->
             <a href="/userpages/<%=userpage._id%>/photos/new" class="btn btn-primary">Add New Photo</a>
+            <% } %>
         </div>
         
         <div id="photoblogContainer">
@@ -63,6 +75,9 @@
                  </div>
                  <div class="photoDescription">
                    <p><%= photo.description %></p>
+                 </div>
+                 <div class="photoID">
+                   <%= photo._id %>
                  </div>
              <% }); %>
                      

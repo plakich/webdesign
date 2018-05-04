@@ -489,7 +489,7 @@ body {
     float: left;
     width: 32%;
     margin: 0.66%;
-    -webkit-filter: brightness(100%);
+    -webkit-filter: brightness(100%); /*browser specific filter; mostly I've left browser specific settings out */
     filter: brightness(100%);
 
 }
@@ -506,6 +506,10 @@ body {
 
 
 .photoDescription {
+    display: none;
+}
+
+.photoID {
     display: none;
 }
 
@@ -561,4 +565,44 @@ body {
     font-weight: bold;
     transition: 0.3s;
     opacity: 1.0;
+    transition: transform color 0.2s;
+    transform: scale(0.7, 0.7);
 }
+
+#modifyPhoto:hover {
+    transform: scale(0.9, 0.9);
+    color: #428bca;
+}
+
+#dropdownModal {
+    display:none;
+    z-index: 1; /* move infront of modal */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    position: absolute;
+    right: 0%;
+    bottom: 20px;
+    background-color: #fff;
+}
+
+#dropdownModal a, #dropdownModal button {
+    display: block;
+    text-decoration: none;
+    padding: 12px 16px;
+    transition: color, background-color 0.5s;
+    border: none;
+    background-color: white;
+    color: #428bca;
+    
+}
+
+#dropdownModal a:hover {
+    background-color:#fd7e14;
+    color: #fff;
+}
+
+#dropdownModal button:hover {
+    background-color:#dc3545;
+    color: #fff;
+}
+
+

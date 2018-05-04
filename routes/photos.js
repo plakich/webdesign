@@ -79,6 +79,66 @@ router.post("/", function(req, res)
             });
         }
     });
-})
+});
+
+//EDIT ROUTE
+router.get("/:photo_id/edit", middleware.checkPhotoOwnership, function(req, res) 
+{
+    Userpage.findById(req.params.id, function(err, userpage)
+    {
+        if(err || !userpage)
+        {
+            res.redirect("back");
+        }
+        else
+        {
+            Photo.findById(req.params.photo_id, function(err, photo)
+            {
+                if(err)
+                {
+                    res.redirect("back");
+                }
+                else
+                {
+                    res.render("photos/edit", {userpage: userpage, photo: photo});
+                }
+            });
+        }
+    });
+});
+
+//COMMENT UPDATE ROUTE
+router.put("/:photo_id", middleware.checkPhotoOwnership, function(req, res) 
+{
+    Photo.findByIdAndUpdate(req.params.photo_id, req.body.photo, function(err, photo) //..AndUpdate(photo id to replace, what to replace it with, callback)
+    {
+        if(err)
+        {
+            res.redirect("back");
+        }
+        else //redirect back to userpage show page
+        {
+            res.redirect("/userpages/" + req.params.id + "/photos");
+        }
+    });
+});
+
+//DESTROY/DELETE ROUTE
+router.delete("/:photo_id", middleware.checkPhotoOwnership, function(req, res)
+{
+    Photo.findByIdAndRemove(req.params.photo_id, function(err)
+    {
+       if(err)
+       {
+           console.log(err);
+           res.redirect("back");
+       }
+       else
+       {
+           res.redirect("/userpages/" + req.params.id);
+       }
+    });
+    
+});
 
 module.exports = router; 
