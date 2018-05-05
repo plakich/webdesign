@@ -9,22 +9,52 @@ var middleware = require("../middleware"); //automatically requires file since i
 
 //INDEX Route
 
-router.get("/", function(req, res){
-    Userpage.find({}, function(err, allUserpages){
-       if(err)
-       {
-           console.log(err);
-       }
-       else
-       {
-           res.render("userpages/index", {userpages: allUserpages, page: "userpages" }); 
-       }
-    });
+router.get("/", function(req, res)
+{
+    var noResults = null;
+    
+    if(req.query.search) //if user searched for profile
+    {
+        const namePattern = new RegExp(escapeRegex(req.query.search), 'gi');
+
+        Userpage.find({name: namePattern}, function(err, userpages) //get and show userpages (plural) that match search
+        {
+           if(err)
+           {
+               console.log(err);
+           }
+           else
+           {
+               if(userpages < 1)
+               {
+                   noResults = "No userpages found that match your search. Please search again."
+                   
+               }
+               res.render("userpages/index", {userpages: userpages, page: "userpages", noResults: noResults }); 
+           }
+        });
+    }
+    else //just display all userpages
+    {
+        Userpage.find({}, function(err, userpages)
+        {
+           if(err)
+           {
+               console.log(err);
+           }
+           else
+           {
+               res.render("userpages/index", {userpages: userpages, page: "userpages", noResults: noResults }); 
+           }
+        });
+    }
+    
 });
 
 //CREATE Route 
 
-router.post("/", middleware.isLoggedIn, function(req, res){
+router.post("/", middleware.isLoggedIn, function(req, res)
+{
    var name = req.body.name;            
    var image = req.body.image;
    var description = req.body.description;
@@ -40,7 +70,8 @@ router.post("/", middleware.isLoggedIn, function(req, res){
        var newUserpage = {name: name, image: image, description: description, owner: owner};
    
        // Create a new Userpage and save to DB
-       Userpage.create(newUserpage, function(err, newlyCreated){
+       Userpage.create(newUserpage, function(err, newlyCreated)
+       {
            if(err)
            {
                console.log(err);
@@ -55,7 +86,8 @@ router.post("/", middleware.isLoggedIn, function(req, res){
 
 //NEW Route 
 
-router.get("/new", middleware.isLoggedIn, function(req, res) {
+router.get("/new", middleware.isLoggedIn, function(req, res) 
+{
    res.render("userpages/new"); 
 });
 
@@ -64,7 +96,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 
 router.get("/:id", function(req, res) 
 {
-    Userpage.findById(req.params.id).populate("comments").exec(function(err, userpage)
+    Userpage.findById(req.params.id).populate("comments").exec(function(err, userpage) //get and show a userpage (singular)
     {   
        if(err || !userpage)
        {
@@ -98,10 +130,12 @@ router.get("/:id/edit", middleware.checkUserpageOwnership, function(req, res)
 
 //UPDATE Route
 
-router.put("/:id", middleware.checkUserpageOwnership, function(req, res){         //req.body.userpage is obj from views/userpage/edit.ejs 
+router.put("/:id", middleware.checkUserpageOwnership, function(req, res)
+{         //req.body.userpage is obj from views/userpage/edit.ejs 
   
     var newData = {name: req.body.userpage.name, image: req.body.userpage.image, description: req.body.userpage.description};
-    Userpage.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, userpage){
+    Userpage.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, userpage)
+    {
         if(err){
             res.redirect("back");
         } else {
@@ -113,7 +147,8 @@ router.put("/:id", middleware.checkUserpageOwnership, function(req, res){       
 });
 
 //DESTROY Route
-router.delete("/:id", middleware.checkUserpageOwnership, function(req, res){
+router.delete("/:id", middleware.checkUserpageOwnership, function(req, res)
+{
    Userpage.findByIdAndRemove(req.params.id, function(err){
        if(err)
        {
@@ -125,6 +160,12 @@ router.delete("/:id", middleware.checkUserpageOwnership, function(req, res){
        }
    });
 });
+
+//used for search in index route
+//used to prevent ddos attacks by replacing escape chars with substring
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 
 module.exports = router;

@@ -485,14 +485,17 @@ body {
     margin: 0 auto;
 }
 
+
+
 .photo > img {
     float: left;
     width: 32%;
-    margin: 0.66%;
+    margin: 0.66666666666%;
     -webkit-filter: brightness(100%); /*browser specific filter; mostly I've left browser specific settings out */
     filter: brightness(100%);
 
 }
+
 
 .photo:hover > img {
     -webkit-filter: brightness(70%);
@@ -605,4 +608,9 @@ body {
     color: #fff;
 }
 
-
+@media screen and (min-width: 600px) {
+    .navbar-center {
+    position: absolute;
+    left: 450px;
+    }
+}

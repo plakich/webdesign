@@ -39,9 +39,13 @@ for(let i = 0; i < photo.length; i++)
         //so we cannot write a static href or action attribute) to edit and delete urls 
         //but first, we must reset the href and action atribs each time since if user clicks on more than
         //one photo, multipe repeated ids get appended to url string. 
-        modalEdit.href = modalEdit.href.substring(0, modalEdit.href.indexOf("photos/") + 7); // photos/ is 7 chars
-        modalEdit.href += photoID[i].textContent.trim() + "/edit";            
-        modalDelete.action = modalDelete.action.substring(0, modalDelete.action.indexOf("photos/") + 7);
-        modalDelete.action += photoID[i].textContent.trim() + "/?_method=DELETE"; //using method_override 
+        if (!!modalEdit) //if user is logged in and owns photoblog page, then modalEdit btn will not be undefined
+        {
+            modalEdit.href = modalEdit.href.substring(0, modalEdit.href.indexOf("photos/") + 7); // photos/ is 7 chars
+            modalEdit.href += photoID[i].textContent.trim() + "/edit";            
+            modalDelete.action = modalDelete.action.substring(0, modalDelete.action.indexOf("photos/") + 7);
+            modalDelete.action += photoID[i].textContent.trim() + "/?_method=DELETE"; //using method_override, so our form action must make a delete request, not post 
+        }
+        
     }, false); 
 }

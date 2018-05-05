@@ -1,5 +1,5 @@
 var express = require("express");
-var router = express.Router({mergeParams: true}); //the merge params obj is so we can access :id from route, else it doesn't get passed to comments.js from app.js
+var router = express.Router({mergeParams: true}); //the merge params obj is so we can access :id from route, else it doesn't get passed to photos.js from app.js
 var Userpage = require("../models/userpage");
 var Photo = require("../models/photo");
 var middleware = require("../middleware");
@@ -12,7 +12,7 @@ var middleware = require("../middleware");
 
 router.get("/", function(req, res) 
 {
-    //have to use userpage because userpage model contains array of photos (i.e., the photoblog itself)
+    //have to use Userpage because userpage model contains array of photos (i.e., the photoblog itself)
     Userpage.findById(req.params.id).populate("photos").exec(function(err, userpage)
     {
         if(err)
@@ -27,7 +27,7 @@ router.get("/", function(req, res)
     
 });
 
-router.get("/new", function(req, res)
+router.get("/new", middleware.isLoggedIn, middleware.checkUserpageOwnership, function(req, res)
 {
    Userpage.findById(req.params.id, function(err, userpage)
    {
@@ -42,7 +42,7 @@ router.get("/new", function(req, res)
    });
 });
 
-router.post("/", function(req, res)
+router.post("/", middleware.isLoggedIn, middleware.checkUserpageOwnership, function(req, res)
 {
     Userpage.findById(req.params.id, function(err, userpage)
     {
@@ -82,8 +82,9 @@ router.post("/", function(req, res)
 });
 
 //EDIT ROUTE
-router.get("/:photo_id/edit", middleware.checkPhotoOwnership, function(req, res) 
+router.get("/:photo_id/edit", middleware.checkUserpageOwnership, function(req, res) 
 {
+    console.log("here");
     Userpage.findById(req.params.id, function(err, userpage)
     {
         if(err || !userpage)
@@ -108,7 +109,7 @@ router.get("/:photo_id/edit", middleware.checkPhotoOwnership, function(req, res)
 });
 
 //COMMENT UPDATE ROUTE
-router.put("/:photo_id", middleware.checkPhotoOwnership, function(req, res) 
+router.put("/:photo_id", middleware.checkUserpageOwnership, function(req, res) 
 {
     Photo.findByIdAndUpdate(req.params.photo_id, req.body.photo, function(err, photo) //..AndUpdate(photo id to replace, what to replace it with, callback)
     {
@@ -124,7 +125,7 @@ router.put("/:photo_id", middleware.checkPhotoOwnership, function(req, res)
 });
 
 //DESTROY/DELETE ROUTE
-router.delete("/:photo_id", middleware.checkPhotoOwnership, function(req, res)
+router.delete("/:photo_id", middleware.checkUserpageOwnership, function(req, res)
 {
     Photo.findByIdAndRemove(req.params.photo_id, function(err)
     {
@@ -135,7 +136,7 @@ router.delete("/:photo_id", middleware.checkPhotoOwnership, function(req, res)
        }
        else
        {
-           res.redirect("/userpages/" + req.params.id);
+           res.redirect("/userpages/" + req.params.id + "/photos");
        }
     });
     
