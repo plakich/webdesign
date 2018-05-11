@@ -6,9 +6,9 @@ var photoSchema = new mongoose.Schema({
    owner: {
          id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User"
+            ref: "Userpage"
          },
-         username: String
+         name: String
    }
    
 });
