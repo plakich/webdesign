@@ -23,7 +23,9 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                   <ul class="nav navbar-nav">
-                    <li class="<%= typeof page !== 'undefined' && page === 'userpages' ? 'active' : '' %>"><a href="/userpages">Home</a></li>
+                    <li><a href="/userpages">Home</a>
+                    </li>
+                    <li><a href="/userpages/<%= userpage._id %>"><%= userpage.name.endsWith("s") ? userpage.name.trim() + "'" : userpage.name.trim() + "'s"%> Userpage</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                       <% if(!currentUser){ %> 
@@ -41,7 +43,7 @@
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
            <% if (currentUser && userpage.owner.id.equals(currentUser._id)){ %>
-                  <span><i id="modifyPhoto" class="fas fa-ellipsis-v"></i></span></h4>
+                  <span><i id="modifyPhoto" class="fas fa-ellipsis-v"></i></span>
                <% } %>
                <div id="dropdownModal">
                <% if (currentUser && userpage.owner.id.equals(currentUser._id)) {%> <!--userpage.owner.id is mongoose obj so have to use equals to compare it to currentUser._id which is string-->
@@ -52,6 +54,8 @@
                <% } %>
                </div>
           <span class="close" data-dismiss="modal" aria-label="Close">X</span>
+          <span><i class="fas fa-chevron-right fa-4x"></i></span>
+          <span><i class="fas fa-chevron-left fa-4x"></i></span>
             <img id="modalPhoto" class="modal-content">
                
             </img>
@@ -62,7 +66,7 @@
         </div>
         
         <div id="newPhoto">
-            <em><p>Welcome to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> Photoblog!</p></em>
+            <em><p>Welcome to <%= userpage.name.endsWith("s") ? userpage.name.trim() + "'" : userpage.name.trim() + "'s"%> Photoblog!</p></em>
             <% if (currentUser && userpage.owner.id.equals(currentUser._id)) {%> <!--userpage.owner.id is mongoose obj so have to use equals to compare it to currentUser._id which is string-->
             <a href="/userpages/<%=userpage._id%>/photos/new" class="btn btn-primary">Add New Photo</a>
             <% } %>

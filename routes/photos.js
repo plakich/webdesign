@@ -70,8 +70,6 @@ router.post("/", middleware.isLoggedIn, middleware.checkUserpageOwnership, funct
                      
                      console.log(photo);
                      console.log('\n\n');
-                     
-                     console.log('\n\n Hello');
                      console.log(userpage);
                      
                      res.redirect("/userpages/" + userpage._id + "/photos");
@@ -84,7 +82,6 @@ router.post("/", middleware.isLoggedIn, middleware.checkUserpageOwnership, funct
 //EDIT ROUTE
 router.get("/:photo_id/edit", middleware.checkUserpageOwnership, function(req, res) 
 {
-    console.log("here");
     Userpage.findById(req.params.id, function(err, userpage)
     {
         if(err || !userpage)

@@ -69,14 +69,14 @@
             <% if (currentUser) { %>
             
                 <form id="commentForm" action="/userpages/<%= userpage._id %>/comments" method="POST">
-                   <textarea name="comment[text]" id="userComment" placeholder="Add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..."></textarea>
+                   <textarea name="comment[text]" id="userComment" placeholder="Add a comment to <%= userpage.name.endsWith("s") ? userpage.name.trim() + "'" : userpage.name.trim() + "'s"%> page..."></textarea>
                       <div class="text-right">
                          <button id="Button" class="btn btn-success" disabled>Add Comment</button>
                       </div>
                 </form>
             <% } else { %>
                 <form action="/login" method="GET">
-                   <textarea name="comment[text]" id="userComment" placeholder="Login to add a comment to <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> page..." disabled></textarea>
+                   <textarea name="comment[text]" id="userComment" placeholder="Login to add a comment to <%= userpage.name.endsWith("s") ? userpage.name.trim() + "'" : userpage.name.trim() + "'s"%> page..." disabled></textarea>
                       <div class="text-right">
                          <button id="Button" class="btn btn-success" disabled>Login To Comment</button>
                       </div>
@@ -89,7 +89,7 @@
       <div class="col-xs-3">
         <a id="photoblogLink" href="/userpages/<%=userpage._id%>/photos">
           <div class="lead well" id="cameraContainer">
-              <p>Visit <%= userpage.name.endsWith("s") ? userpage.name + "'" : userpage.name + "'s"%> Photoblog! </p>
+              <p>Visit <%= userpage.name.endsWith("s") ? userpage.name.trim() + "'" : userpage.name.trim() + "'s"%> Photoblog! </p>
               <span class="fa-layers"><i class="fas fa-camera fa-4x"></i><i class="fas fa-certificate fa-sm"></i></span>
               <p>Take More Photos!</p>
           </div>
