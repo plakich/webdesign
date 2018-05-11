@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Overhyped</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/main.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    </head>
+    <body>
+        
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="/">OverHyped</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a href="/userpages">Home</a>
+                    </li>
+                    <li><a href="/userpages/<%= userpage._id %>"><%= userpage.name.endsWith("s") ? userpage.name.trim() + "'" : userpage.name.trim() + "'s"%> Userpage</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                      <% if(!currentUser){ %> 
+                      <li><a href="/login">Login</a></li>
+                      <li><a href="/register">Sign Up</a></li>
+                    <% } else { %>
+                      <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+                      <li><a href="/logout">Logout</a></li>
+                    <% } %>
+                  </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+           <% if (currentUser && userpage.owner.id.equals(currentUser._id)){ %>
+                  <span><i id="modifyPhoto" class="fas fa-ellipsis-v"></i></span>
+               <% } %>
+               <div id="dropdownModal">
+               <% if (currentUser && userpage.owner.id.equals(currentUser._id)) {%> <!--userpage.owner.id is mongoose obj so have to use equals to compare it to currentUser._id which is string-->
+                   <a id="modalEdit" href="/userpages/<%=userpage._id%>/photos/">Edit</a>
+                   <form id="modalDelete" action="/userpages/<%=userpage._id%>/photos/" method="POST">
+                       <button>Delete</button>
+                   </form>
+               <% } %>
+               </div>
+          <span class="close" data-dismiss="modal" aria-label="Close">X</span>
+          <span><i class="fas fa-chevron-right fa-4x"></i></span>
+          <span><i class="fas fa-chevron-left fa-4x"></i></span>
+            <img id="modalPhoto" class="modal-content">
+               
+            </img>
+            <div id="modalCaption">
+              
+            </div>
+          </div>
+        </div>
+        
+        <div id="newPhoto">
+            <em><p>Welcome to <%= userpage.name.endsWith("s") ? userpage.name.trim() + "'" : userpage.name.trim() + "'s"%> Photoblog!</p></em>
+            <% if (currentUser && userpage.owner.id.equals(currentUser._id)) {%> <!--userpage.owner.id is mongoose obj so have to use equals to compare it to currentUser._id which is string-->
+            <a href="/userpages/<%=userpage._id%>/photos/new" class="btn btn-primary">Add New Photo</a>
+            <% } %>
+        </div>
+        
+        <div id="photoblogContainer">
+             <% userpage.photos.forEach(function(photo){ %> 
+                 <div class="photo" data-toggle="modal" data-target="#myModal">
+                     <img class="photoblogIMG" src="<%= photo.image %>">
+                 </div>
+                 <div class="photoDescription">
+                   <p><%= photo.description %></p>
+                 </div>
+                 <div class="photoID">
+                   <%= photo._id %>
+                 </div>
+             <% }); %>
+                     
+                 
+        </div>
+        
+<!-- jquery cdn-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <!-- Bootstrap JS CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+crossorigin="anonymous"></script>
+<!--dom manipulation for photoblog -->
+<script src="/javascript/photoblog.js"></script>
+    </body>
+</html>

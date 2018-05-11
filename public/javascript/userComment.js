@@ -60,6 +60,7 @@ window.addEventListener("click", OnClick, false); //listen for clicks in window
 //     }, false);
 // }
 
+var sheet = document.styleSheets[1];
 
 
 //grows textarea box with newlines and shrinks with deletions and backspace on line start
@@ -82,10 +83,11 @@ function OnInput(e)
 
 //this function is mainly for checking if textarea box was clicked
 //but it also checks for clicks on the ellipsis icons used for editing and deleting
+//e is event.
 function OnClick(e) 
 {
   
-  if (!!ellipsis_v && event.target !== ellipsis_v)
+  if (!!ellipsis_v && e.target !== ellipsis_v) //if you didn't click on ellipsis, don't show dropdown edit/delete menu
   {
       dropdown.classList.remove('show');
   }
@@ -93,7 +95,7 @@ function OnClick(e)
   {
       for(let i = 0; i < dropdown2.length; i++)
       {
-          if (event.target !== ellipsis_v2[i])
+          if (e.target !== ellipsis_v2[i])
           {
                 dropdown2[i].classList.remove('show');    
           }
@@ -101,30 +103,51 @@ function OnClick(e)
       }
   }
   
-  if (event.target === tx) //if textarea was clicked, expand new black border-bottom from center by changing attr of pseudo elmnt
+  if (e.target === tx) //if textarea was clicked, expand new black border-bottom from center by changing attr of pseudo elmnt
   {
     txContainer.classList.toggle('commentSlide');
-    document.styleSheets[1].addRule('#commentContainer::after', 'transform:scaleX(1);'); //stylesheets[0] is bootstrap link
+    
+    
+    if (sheet.addRule) //for ie and chrome
+    {
+        sheet.addRule('#commentContainer::after', 'transform:scaleX(1);'); //user clicked textear, so expand black bottom border
+
+    }
+    else if (sheet.insertRule) //for firefox
+    {
+        sheet.insertRule('#commentContainer::after { transform: scaleX(1); }', 0);
+    }
+    
     
   }
   else //(event.target !== tx )
   {
-    document.styleSheets[1].addRule('#commentContainer::after', 'transform:scaleX(0);'); //user clicked outside txarea, so collapse bottom border
+      
+    if (sheet.addRule) //for ie and chrome
+    {
+        sheet.addRule('#commentContainer::after', 'transform:scaleX(0);'); //user clicked outside txarea, so collapse bottom border
+
+    }
+    else if (sheet.insertRule) //firefox
+    {
+        sheet.insertRule("#commentContainer::after { -moz-transform:scaleX(0); }", 0);
+    }
     
-    if (event.target === expandIcon) //user clicked on expand icon to expand userpic
+    
+    if (e.target === expandIcon) //user clicked on expand icon to expand userpic
     {
         userpic.classList.toggle('expand-userpic');
     }
-    else if (!!ellipsis_v && event.target === ellipsis_v) //show edit and delete menu options for userpage
+    else if (!!ellipsis_v && e.target === ellipsis_v) //show edit and delete menu options for userpage
     {
         dropdown.classList.toggle('show');
     }
-    else if (!!ellipsis_v2 && !!dropdown2) 
+    else if (!!ellipsis_v2 && !!dropdown2)  //if user is logged in and able to see ellipsis and dropdown menus
     {
         
-        for(let i = 0; i < ellipsis_v2.length; i++)
+        for(let i = 0; i < ellipsis_v2.length; i++) //toggle displaying menu when elipsis icon clicked. 
         {
-            if (event.target === ellipsis_v2[i])
+            if (e.target === ellipsis_v2[i])
             {
                
                 dropdown2[i].classList.toggle('show');

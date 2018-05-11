@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+
+
+    <div class="row">
+        <div class="loginSignBorder container" style="margin-top: 30px">
+             <h1 style="text-align: center">Add New Photo</h1>
+             <form action="/userpages/<%=userpage._id%>/photos" method="POST">
+                 <div class="form-group">
+                     <label for="name">Image Url</label>
+                     <input class="form-control" type="text" name="photo[image]" placeholder="Photo Url">
+                 </div>
+                 <div class="form-group">
+                     <label for="description">Description</label>
+                     <input class="form-control" type="text" name="photo[description]" placeholder="Short Description">
+                 </div>
+                 <div class="form-group">
+                      <button class="btn btn-lg btn-default btn-block btn-primary">Submit!</button>
+                 </div>
+            </form>
+            <a href="/userpages/<%=userpage._id%>/photos">Go Back</a>
+        </div>
+       
+    
+        
+        
+    </div>
+
+
+
+<% include ../partials/footer %>

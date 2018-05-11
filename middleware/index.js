@@ -2,6 +2,7 @@
 
 var Userpage = require("../models/userpage");
 var Comment = require("../models/comment");
+var Photo = require("../models/photo");
 
 var middlewareObj = {
     
@@ -34,7 +35,7 @@ var middlewareObj = {
                     else
                     {
                         
-                        res.redirect("back");
+                        res.redirect("/userpages");
                     }
                     
                 }

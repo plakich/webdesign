@@ -42,11 +42,19 @@ passport.deserializeUser(User.deserializeUser()); //3rd post for diagram of seri
 app.use(function(req, res, next){
     //res.locals.currentUser will now equal req.user. this is important because inside templates 
     //i.e. views, there's no access to route specific variables like req.user
+    // res.locals is Express's idea of local variables
+    // so when views are rendered and passed objects like {userpage: userpage}
+    // this is telling Express to add a userpage property to res.locals obj
     res.locals.currentUser = req.user; 
     next(); 
 });
 
-
+// code below helps shorten writing of routes
+// e.g., for photos routes, every route will start with
+// /userpages/:id/photos 
+// so the edit route that starts wtih 
+// router.get("/:photo_id/edit"
+// is actually router.get("/userpages/:id/photos/:photo_id/edit")
 app.use("/", indexRoutes); 
 app.use("/userpages", userpageRoutes);  
 app.use("/userpages/:id/comments", commentRoutes);
